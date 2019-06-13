@@ -1,0 +1,9 @@
+[Desktop Entry]
+_Name=SimplestRSS
+Exec=simplestrss
+Icon=assets/logo.svg
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+Keywords=homescreen
+X-Ubuntu-Launcher=simplestrss homescreen

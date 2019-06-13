@@ -1,0 +1,16 @@
+{
+    "name": "simplestrss.kazord",
+    "description": "simplest way to download and read rss",
+    "architecture": "@CLICK_ARCH@",
+    "title": "SimplestRSS",
+    "hooks": {
+        "simplestrss": {
+            "apparmor": "simplestrss.apparmor",
+            "desktop":  "simplestrss.desktop",
+	    "content-hub": "simplestrss.contenthub"
+        }
+    },
+    "version": "1.0.2",
+    "maintainer": "kazord <kazord@gmail.com>",
+    "framework" : "ubuntu-sdk-16.04"
+}

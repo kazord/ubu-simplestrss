@@ -1,0 +1,4 @@
+{
+    "policy_groups": ["debug", "networking", "content_exchange"],
+    "policy_version": 16.04
+}

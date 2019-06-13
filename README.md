@@ -1,2 +1,3 @@
-# ubu-simplestrss
-A simple rss client for ubport
+# SimplestRSS
+
+simplest way to download and read rss
