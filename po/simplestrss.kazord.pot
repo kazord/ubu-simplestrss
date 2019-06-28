@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: simplestrss.kazord\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-13 18:07+0000\n"
+"POT-Creation-Date: 2019-06-28 14:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,46 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/build/tmp/Main.qml:20 ../qml/Main.qml:27 simplestrss.desktop.in.h:1
+#: ../qml/ManageRSS.qml:17
+msgid "RSS management"
+msgstr ""
+
+#: ../qml/ManageRSS.qml:34 ../qml/PreviewRSS.qml:31
+msgid "Add RSS"
+msgstr ""
+
+#: ../qml/ManageRSS.qml:47
+msgid "Search"
+msgstr ""
+
+#: ../qml/ManageRSS.qml:52
+msgid "Close"
+msgstr ""
+
+#: ../qml/ManageRSS.qml:71
+msgid "Enter URL of feed"
+msgstr ""
+
+#: ../qml/Main.qml:29 ../qml/build/tmp/Main.qml:20 simplestrss.desktop.in.h:1
 msgid "SimplestRSS"
 msgstr ""
 
-#: ../qml/Main.qml:94
-msgid "SimplestRSS > Add new feed"
+#: ../qml/ViewDetailRSSWebview.qml:11
+msgid "View site"
 msgstr ""
 
-#: ../qml/Main.qml:162
-msgid "SimplestRSS > View feed"
+#: ../qml/ViewDetailRSS.qml:11
+msgid "Detail article"
+msgstr ""
+
+#: ../qml/ViewDetailRSS.qml:17
+msgid "Attempt to recover content"
+msgstr ""
+
+#: ../qml/PreviewRSS.qml:15
+msgid "Feed preview"
+msgstr ""
+
+#: ../qml/PreviewRSS.qml:39
+msgid "edit"
 msgstr ""
