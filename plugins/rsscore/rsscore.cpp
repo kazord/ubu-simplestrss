@@ -17,10 +17,11 @@ Feed* RSSCore::getDBFeed(int dbid) {
 }
 Feed* RSSCore::getFeed(int feedindex) {
 	FeedInfos fi = DB::instance()->feeds().at(feedindex);
-	return new Feed(fi.name(), fi.getUrl(), fi.dbid());
+	return new Feed(fi);
 }
 void RSSCore::removeDBFeed(int dbid) {
 	DB::instance()->removeFeed(dbid);
+    emit feedlistChanged();
 }
 //key : name = ?, url = ?, main = ?, item = ?, link = ?, author = ?, category = ?, title = ?, desc = ?, date = ?, multimedia = ?, color = ?, date_format = ?, cleanHTML = ?, tagsRemove = ?, favicon = ?
 void RSSCore::updateDBFeed(int dbid, QString &key, QString value) {
@@ -142,7 +143,7 @@ bool RSSCore::insertFeed(QString url) {
 	else
 		fi.setName("Unknow");
 	fi.setFavicon(Web::instance()->get_favicon_url(QUrl(url)));
-	
+	qDebug() <<Web::instance()->get_favicon_url(QUrl(url));
 	if(!DB::instance()->addFeed(fi))
 		return false;
 	emit feedlistChanged();
