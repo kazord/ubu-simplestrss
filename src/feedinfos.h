@@ -17,6 +17,7 @@ class FeedInfos {
 	public:
 		FeedInfos();
 		FeedInfos(int id, QString name, QString main, QString item, QString link, QString author, QString category, QString title, QString desc, QString date, QString multimedia, QString titleColor, QString faviconUrl, bool removeHTML, bool tagsDecoding, Qt::DateFormat dateFormat, QString url);
+		FeedInfos(int id, QString name, QString url);
 		~FeedInfos() = default;
 		
 		bool isItem(QStringRef cmp) const;

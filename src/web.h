@@ -23,6 +23,8 @@ class Web : QObject {
 		//void get_mercury(QUrl path, parameters, QJsonDocument &root);
 		QString wget(QUrl uri);
 		QString wget(QUrl uri, QXmlStreamReader &reader);
+		QString autoFetchFullArticle(const QUrl url, const QString desc);
+		QString manualFetchFullArticle(const QUrl url, const QString divID);
 	//slots:
 //		void replyReceived(QNetworkReply *reply);	
 	private:

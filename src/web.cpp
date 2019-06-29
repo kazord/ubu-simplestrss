@@ -5,6 +5,7 @@
 #include <QNetworkReply>
 #include <QTextCodec>
 #include <QVariant>
+#include <QRegularExpression>
 #include <QEventLoop>
 
 #include "web.h"
@@ -32,18 +33,18 @@ QString Web::get_favicon_url(QUrl url, bool redirected_url) {
 	QString baseUrl = url.url(QUrl::RemovePath);
 	QString data;
 	data = Web::wget(QUrl(baseUrl)); 
-	QRegExp rx("<link [^>]*rel=\"shortcut icon\"[^>]*/?>");
-	rx.setCaseSensitivity(Qt::CaseInsensitive);
-	int pos = rx.indexIn(data);
-	if(pos > -1) {
-		QRegExp rx2("href=\"([^\"]*)\"");
-		rx2.setCaseSensitivity(Qt::CaseInsensitive);
-		int pos2 = rx2.indexIn(rx.cap(0));
-		if(pos2 > -1){
-			if(rx2.cap(1).left(4) != "http")
-				return baseUrl+"/"+rx2.cap(1);
+	QRegularExpression rx("<link [^>]*rel=\"shortcut icon\"[^>]*/?>");
+	rx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
+	QRegularExpressionMatch search = rx.match(data);
+	if(search.hasMatch()) {
+		QRegularExpression rx2("href=\"([^\"]*)\"");
+		rx2.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
+		QRegularExpressionMatch search2 = rx2.match(search.captured(1));
+		if(search2.hasMatch()){
+			if(search2.captured(1).left(4) != "http")
+				return baseUrl+"/"+search2.captured(1);
 			else
-				return rx2.cap(1);
+				return search2.captured(1);
 		}
 	}
 	//TODO try on feedly
@@ -53,15 +54,15 @@ QString Web::get_favicon_url(QUrl url, bool redirected_url) {
 QString Web::get_source_url_from_feedly(QUrl src_url, QString redirected_url) {
 	QString data;
 	data = Web::wget(src_url);
-	QRegExp rx("<link>([^<]+)</link>");
-	rx.setCaseSensitivity(Qt::CaseInsensitive);
-	int pos = rx.indexIn(data);
-	if (pos > -1) {
-		QRegExp rx2("^((https?://)?[^/]+/?)$");
-		rx2.setCaseSensitivity(Qt::CaseInsensitive);
-		int pos2 = rx2.indexIn(rx.cap(1));
-		if(pos2 == -1) //not a basic feed
-			return rx.cap(1);
+	QRegularExpression rx("<link>([^<]+)</link>");
+	rx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
+	QRegularExpressionMatch search = rx.match(data);
+	if(search.hasMatch()) {
+		QRegularExpression rx2("^((https?://)?[^/]+/?)$");
+		rx2.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
+		QRegularExpressionMatch search2 = rx2.match(search.captured(1));
+		if(!search.hasMatch()) //not a basic feed
+			return search.captured(1);
 		else
 			return src_url.url();
 	}
@@ -100,13 +101,13 @@ QString Web::wget(QUrl url) {
 	QByteArray output_array = _reply->readAll();
 	QString output = QString::fromUtf8(output_array); 
 	qDebug() << "convert ok";
-	QRegExp encoding("<\\\?xml version=\"[^\"]+\" encoding=\"([^\"]+)\" ?\\\?>");
-	encoding.setCaseSensitivity(Qt::CaseInsensitive);
-	int pos = encoding.indexIn(output);
-	if (pos != -1) {
-		qDebug() << "Encoding found : " << encoding.cap(1).toUpper();
-		if(encoding.cap(1).toUpper() != "UTF-8")
-			output = QTextCodec::codecForHtml(encoding.cap(1).toUpper().toLatin1())->toUnicode(output_array);
+	QRegularExpression encoding("<\\\?xml version=\"[^\"]+\" encoding=\"([^\"]+)\" ?\\\?>");
+	encoding.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
+	QRegularExpressionMatch search = encoding.match(output);
+	if (search.hasMatch()) {
+		qDebug() << "Encoding found : " << search.captured(1).toUpper();
+		if(search.captured(1).toUpper() != "UTF-8")
+			output = QTextCodec::codecForHtml(search.captured(1).toUpper().toLatin1())->toUnicode(output_array);
 	}
 	output.replace("\"//","\"http://");
 	_reply->deleteLater();
@@ -119,4 +120,73 @@ QString Web::wget(const QUrl url, QXmlStreamReader &reader) {
 	if(text != "")
 		reader.addData(text);
 	return text;
+}
+/*QString Web::autoFetchFullArticle(const QUrl url, const QString desc) {
+	QString page = wget(url);
+	QString stripedDesc = desc;
+	stripedDesc.replace(QRegularExpression("<[^>]+>"), "");
+	page.replace(QRegularExpression("<script[^>]+>.+?</script>"), "");
+	QString stripedMidDesc = stripedDesc.mid(1,8);
+	//stripedDesc.replace("?", ".");
+	stripedDesc.replace(" ", "\\s+");
+
+	//QRegularExpression finder("<div[^>]*>((?:[^<]|<[^d]|<d[^i]|<di[^v])+?"+stripedMidDesc+"(?:[^<]|<[^d]|<d[^i]|<di[^v])+?)</div>");
+	QString notdiv("(?:[^<]|<[^d]|<d[^i]|<di[^v])");
+	QString subdiv("(?:<div[^>]*>"+notdiv+"*</div>)");
+	QString sub2div("(?:<div[^>]*>(?:"+notdiv+"|"+subdiv+")*</div>)");
+	QString sub3div("(?:<div[^>]*>(?:"+notdiv+"|"+sub2div+")*</div>)");
+	QRegularExpression finder("<div[^>]*>((?:"+sub3div+"|"+notdiv+")*"+stripedMidDesc+"(?:"+sub3div+"|"+notdiv+")*)</div>");
+	qDebug() << stripedDesc <<finder.pattern();
+	finder.setPatternOptions(QRegularExpression::CaseInsensitiveOption|QRegularExpression::DotMatchesEverythingOption|QRegularExpression::UseUnicodePropertiesOption);
+		qDebug() << "matchstart : ";
+	QRegularExpressionMatch search = finder.match(page);
+		qDebug() << "matchend : ";
+	if (search.hasMatch()) {
+		qDebug() << "fulltext found : " << search.captured(1).size();
+		return search.captured(1);
+	}
+	qDebug() << "search : " << stripedMidDesc;
+	return "";
+}*/
+QString Web::autoFetchFullArticle(const QUrl url, const QString desc) {
+	QString page = wget(url);
+	QString stripedDesc = desc;
+	stripedDesc.replace(QRegularExpression("<[^>]+>"), "");
+
+	page.replace(QRegularExpression("<script[^>]+>.+?</script>",QRegularExpression::CaseInsensitiveOption|QRegularExpression::DotMatchesEverythingOption), "");
+	QString stripedMidDesc = stripedDesc.mid(1,8);
+	//stripedDesc.replace("?", ".");
+	stripedDesc.replace(" ", "\\s+");
+
+	QRegularExpression finder("<div[^>]*>((?:[^<]|<[^d]|<d[^i]|<di[^v])+?"+stripedMidDesc+"(?:[^<]|<[^d]|<d[^i]|<di[^v])+?)</div>");
+	finder.setPatternOptions(QRegularExpression::CaseInsensitiveOption|QRegularExpression::DotMatchesEverythingOption|QRegularExpression::UseUnicodePropertiesOption);
+	QString notdiv("(?:[^<]|<[^d]|<d[^i]|<di[^v])");
+	QRegularExpression subdiv("(?:<div[^>]*>("+notdiv+"*)</div>)");
+	subdiv.setPatternOptions(QRegularExpression::CaseInsensitiveOption|QRegularExpression::DotMatchesEverythingOption|QRegularExpression::UseUnicodePropertiesOption);
+	do {
+
+		QRegularExpressionMatch search = finder.match(page);
+		if (search.hasMatch()) {
+			qDebug() << "fulltext found : " << search.captured(1).size();
+			return search.captured(1);
+		}
+		else
+			page.replace(subdiv, "\\1");
+		qDebug() << "remove div";
+
+	}
+	while(page.contains(subdiv));	
+	return "";
+}
+//TODO handle subdiv like auto
+QString Web::manualFetchFullArticle(const QUrl url, const QString divID) {
+	QString page = wget(url);
+	QRegularExpression finder("<div[^>]*(?:class|id)=.?"+divID+"[^>]+>(.+?)</div>");
+	finder.setPatternOptions(QRegularExpression::CaseInsensitiveOption|QRegularExpression::DotMatchesEverythingOption);
+	QRegularExpressionMatch search = finder.match(page);
+	if (search.hasMatch()) {
+		qDebug() << "fulltext found : " << search.captured(1);
+		return search.captured(1);
+	}
+	return "";
 }

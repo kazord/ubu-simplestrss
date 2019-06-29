@@ -2,6 +2,7 @@ import QtQuick 2.4
 import QtQuick.Controls 2
 import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
+import RSSCore 1.0
 
     
 Page {
@@ -16,7 +17,9 @@ Page {
                         iconName: "stock_website"
                         text: i18n.tr("Attempt to recover content")
                         onTriggered: {     
-                    Qt.openUrlExternally(urlNews);      
+                    Qt.openUrlExternally(urlNews);
+			var fulltext = RSSCore.fetchFullArticle(urlNews, "auto", descNews)
+			if(fulltext != "") descNews = fulltext
                     //viewDetailNews.pageStack.addPageToCurrentColumn(viewDetailNews, Qt.resolvedUrl("ViewDetailRSSWebview.qml"), {"urlNews": urlNews, "titleNews": viewDetailNews.titleNews, "descNews": viewDetailNews.descNews}); 
                     
                     

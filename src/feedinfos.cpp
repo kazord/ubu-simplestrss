@@ -4,6 +4,8 @@
 FeedInfos::FeedInfos(int id, QString name, QString main, QString item, QString link, QString author, QString category, QString title, QString desc, QString date, QString multimedia, QString titleColor, QString faviconUrl, bool removeHTML, bool tagsDecoding, Qt::DateFormat dateFormat,QString url) : _id(id),_name(name), _main(main), _item(item),  _link(link), _author(author), _category(category), _title(title), _desc(desc), _date(date), _multimedia(multimedia), _titleColor(titleColor),_faviconUrl(faviconUrl), _removeHTML(removeHTML), _tagsDecoding(tagsDecoding), _dateFormat(dateFormat), _url(url) {
 
 }
+FeedInfos::FeedInfos(int id, QString name, QString url) : _id(id),_name(name), _url(url) {
+}
 FeedInfos::FeedInfos() {
 }
 void FeedInfos::setName(QString name) {

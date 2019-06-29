@@ -59,20 +59,20 @@ property int currentIndexList: 0
             anchors.topMargin: homeRSS.header.height+units.gu(1)
             anchors.leftMargin: units.gu(2)
             currentIndex: root.currentIndexList
-            model: RSSCore.feedlist.length
+            model: RSSCore.feedlistZero.length
             delegate: Row {
                 id:layout
                 height: units.gu(6)
                 width: parent.width
 
-                Text { anchors.verticalCenter: parent.verticalCenter; text:  RSSCore.feedlist[index].name; color: if(list.currentIndex == index){"black"}else{"#b1b1b1"} }
+                Text { anchors.verticalCenter: parent.verticalCenter; text:  RSSCore.feedlistZero[index].name; color: if(list.currentIndex == index){"black"}else{"#b1b1b1"} }
 
                                 
           
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    homeRSS.pageStack.addPageToNextColumn(homeRSS, Qt.resolvedUrl("ViewRSS.qml"), {"dbid": RSSCore.feedlist[index].dbid, "titlePage": RSSCore.feedlist[index].name})
+                    homeRSS.pageStack.addPageToNextColumn(homeRSS, Qt.resolvedUrl("ViewRSS.qml"), {"dbid": RSSCore.feedlistZero[index].dbid, "titlePage": RSSCore.feedlistZero[index].name})
                     onClicked: root.currentIndexList = index                   
                 }
             }
