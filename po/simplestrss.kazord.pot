@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: simplestrss.kazord\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-28 14:24+0000\n"
+"POT-Creation-Date: 2019-06-29 16:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,11 +45,11 @@ msgstr ""
 msgid "View site"
 msgstr ""
 
-#: ../qml/ViewDetailRSS.qml:11
+#: ../qml/ViewDetailRSS.qml:12
 msgid "Detail article"
 msgstr ""
 
-#: ../qml/ViewDetailRSS.qml:17
+#: ../qml/ViewDetailRSS.qml:18
 msgid "Attempt to recover content"
 msgstr ""
 

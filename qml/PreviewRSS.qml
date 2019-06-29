@@ -142,7 +142,7 @@ Page {
     XmlRole { name: "media"; query: "media/string()" }
         
         Component.onCompleted: {
-            //xmlNewsList.xml = RSSCore.PREVIEW(feedURL);
+            xmlNewsList.xml = RSSCore.previewFeed(feedURL);
         }
 	}
     
