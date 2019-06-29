@@ -27,10 +27,24 @@ property int currentIndexList: 0
         header: PageHeader {
             id: header
             title: i18n.tr('SimplestRSS')
-                StyleHints {
-                    foregroundColor: "white"
-                    backgroundColor: "black"
+                
+            StyleHints {
+                foregroundColor: "white"
+                backgroundColor: "black"
+                dividerColor: "black"
+            }
+            
+            contents: Rectangle {
+                anchors.fill: parent
+                color: "black"
+                Label {
+                    anchors.centerIn: parent
+                    text: header.title
+                    color: "white"
+                    textSize: Label.Large
+                    font.bold: true
                 }
+            }
             
             trailingActionBar {
                 actions: [
