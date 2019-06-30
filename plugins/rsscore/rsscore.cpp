@@ -42,6 +42,16 @@ QString RSSCore::fetchFeed(int dbid) {
 			Web::instance()->wget(fi.getUrl(),sr);
 			XML::extractArticles(fi, la, sr);
 		}
+		//sort la
+		for(int i = 0; i < la.size();i++) {
+			qint64 mindate = la.at(i).getNumDate();
+			for(int j = i+1; j < la.size();j++) {
+				if(la.at(j).getNumDate() > mindate) {
+					mindate = la.at(j).getNumDate();
+					la.move(j, i);
+				}
+			}
+		}
 	}
 	else
 	{

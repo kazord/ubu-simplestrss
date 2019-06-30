@@ -33,13 +33,13 @@ void Article::setNumDate(qint64 date) {
 void Article::setMedia(QString media) {
 	_media = media;
 }
-QString Article::getMedia() {
+QString Article::getMedia() const {
 	return _media;
 }
-QString Article::getDescription() {
+QString Article::getDescription() const {
 	return _desc;
 }
-qint64 Article::getNumDate() {
+qint64 Article::getNumDate() const {
 	return _numDate;
 }
 void Article::writeXmlStream(QXmlStreamWriter& stream) const {

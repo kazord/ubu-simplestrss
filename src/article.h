@@ -18,9 +18,9 @@ class Article {
 		void setStrDate(QString date);
 		void setNumDate(qint64 date);
 	  	void setMedia(QString media);
-		QString getMedia();
-		QString getDescription();
-		qint64 getNumDate();
+		QString getMedia() const;
+		QString getDescription() const;
+		qint64 getNumDate() const;
 		void writeXmlStream(QXmlStreamWriter& stream) const;
 	private:
 		int _id;
