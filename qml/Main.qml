@@ -5,22 +5,38 @@ import QtQuick.Window 2.2
 import RSSCore 1.0
 import QtQuick.XmlListModel 2.0
 import Qt.labs.settings 1.0
-    
+import QtGraphicalEffects 1.0
+
 MainView {
     id: root
     objectName: 'mainView'
     applicationName: 'simplestrss.kazord'
     automaticOrientation: true
-        
-    width: if(Screen.desktopAvailableWidth > units.gu(60)){units.gu(125)}else{Screen.desktopAvailableWidth}
-    height:if(Screen.desktopAvailableHeight > units.gu(100)){units.gu(100)}else{Screen.desktopAvailableHeight}
+
+    width: if(Screen.desktopAvailableWidth > units.gu(60)){units.gu(125)}else{Screen.desktopAvailableWidth+2}
+    height:if(Screen.desktopAvailableHeight > units.gu(100)){units.gu(70)}else{Screen.desktopAvailableHeight}
                 
 property int currentIndexList: 0        
 
     AdaptivePageLayout {
         anchors.fill: parent
         primaryPage: homeRSS
-
+            
+        layouts: PageColumnsLayout {
+            when: width > units.gu(60)
+            // column #0
+            PageColumn {
+                minimumWidth: units.gu(30)
+                maximumWidth: units.gu(60)
+                preferredWidth: units.gu(40)
+            }
+            // column #1
+            PageColumn {
+                fillWidth: true
+                
+            }
+        }
+        
         Page {
             id: homeRSS
                 
@@ -79,7 +95,29 @@ property int currentIndexList: 0
                 height: units.gu(6)
                 width: parent.width
 
-                Text { anchors.verticalCenter: parent.verticalCenter; text:  RSSCore.feedlistZero[index].name; color: if(list.currentIndex == index){"black"}else{"#b1b1b1"} }
+                Image {
+                    id: iconFeed
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left      
+                    width: layout.height/2
+                    height: layout.height/2
+                    fillMode: Image.PreserveAspectCrop
+                        source: if(RSSCore.feedlistZero[index].faviconUrl != ""){RSSCore.feedlistZero[index].faviconUrl}else{"../assets/empty.jpg" }
+                    visible: false
+                }
+                    
+                OpacityMask {
+                    anchors.fill: iconFeed
+                    source: iconFeed
+                    maskSource: Rectangle {
+                        width: iconFeed.width
+                        height: iconFeed.height
+                        radius: units.gu(2)
+                        visible: false
+                    }
+                }
+                
+                Text { anchors.left: iconFeed.right; anchors.leftMargin: units.gu(1); anchors.verticalCenter: parent.verticalCenter; text:  RSSCore.feedlistZero[index].name; width:parent.width-iconFeed.width; wrapMode:Text.WordWrap; color: if(list.currentIndex == index){"black"}else{"#b1b1b1"} }
 
                                 
           
