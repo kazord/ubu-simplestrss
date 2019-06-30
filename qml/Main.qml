@@ -13,7 +13,7 @@ MainView {
     automaticOrientation: true
         
     width: if(Screen.desktopAvailableWidth > units.gu(60)){units.gu(125)}else{Screen.desktopAvailableWidth}
-    height:if(Screen.desktopAvailableHeight > units.gu(100)){units.gu(125)}else{Screen.desktopAvailableHeight}
+    height:if(Screen.desktopAvailableHeight > units.gu(100)){units.gu(100)}else{Screen.desktopAvailableHeight}
                 
 property int currentIndexList: 0        
 
