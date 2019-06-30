@@ -30,7 +30,7 @@ Web::Web() {
 }
 
 QString Web::get_favicon_url(QUrl url, bool redirected_url) {
-	QString baseUrl = url.url(QUrl::RemovePath);
+	QString baseUrl = url.url(QUrl::RemoveQuery|QUrl::RemovePath);
 	QString data;
 	data = Web::wget(QUrl(baseUrl)); 
 	QRegularExpression rx("<link [^>]*rel=\"(shortcut )?icon\"[^>]*/?>");
