@@ -27,12 +27,12 @@ Page {
             trailingActionBar {
                 actions: [
                     Action {
-                        iconName: "add"
+                        iconName: "settings"
                         text: "add"
                         onTriggered: {
                             viewFeed.pageStack.addPageToNextColumn(viewFeed, Qt.resolvedUrl("ManageRSS.qml"))
                         }
-                    visible: if(root.currentIndexList == 0){true}else{false}
+                    visible: if(root.width < units.gu(50)){if(root.currentIndexList == 0){true}else{false}}else{false}
                     }
                ]
                numberOfSlots: 2

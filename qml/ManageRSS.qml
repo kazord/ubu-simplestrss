@@ -154,7 +154,7 @@ Page {
                actions: [
                    Action {
                     iconName: "delete"
-                    //onTriggered: console.log(RSSCore.removeFeed(mysearchfield.text))  
+                    onTriggered: console.log(RSSCore.removeDBFeed(RSSCore.feedlist[index].dbid))  
                    }
                ]
            }
@@ -173,11 +173,10 @@ Page {
                     anchors.left: parent.left      
                     width: layout.height
                     height: layout.height
-
                     fillMode: Image.PreserveAspectCrop
-                    source: "../assets/empty.jpg" //TODO icon feed
-
+                        source: if(RSSCore.feedlist[index].faviconUrl){RSSCore.feedlist[index].faviconUrl}else{"../assets/empty.jpg" }
                     visible: false
+                    Component.onCompleted: console.log(RSSCore.feedlist[index].faviconUrl) 
                 }
             
                 OpacityMask {
