@@ -140,7 +140,6 @@ Page {
 Component.onCompleted: {
 			console.log("xmlmodel:"+viewFeed.dbid)
                         xmlNewsList.xml = RSSCore.fetchFeed(viewFeed.dbid);
-			console.log(xmlNewsList.xml)
         }
 
 	}

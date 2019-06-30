@@ -195,7 +195,7 @@ QQueue<FeedInfos>  DB::feeds() {
 		return ret;
 	}
 	while (q.next()) {
-		qDebug() << q.value(0) << q.value(1) << q.value(2) << q.value(3);
+		//qDebug() << q.value(0) << q.value(1) << q.value(2) << q.value(3);
 		FeedInfos f;
 		f._id = q.value(0).toInt();
 		f._url = q.value(1).toString();

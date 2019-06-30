@@ -113,6 +113,7 @@ QString RSSCore::previewFeed(QString url) {
 	else
 		fi.setName("Unknow");
 	fi.setFavicon(Web::instance()->get_favicon_url(QUrl(url)));
+	qDebug() << fi.getFavicon() << Web::instance()->get_favicon_url(QUrl(url));
 	qDebug() << "fetching preview ";
 	QString outstr("");
 	QList<Article> la;

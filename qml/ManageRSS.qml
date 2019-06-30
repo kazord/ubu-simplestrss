@@ -9,7 +9,7 @@ import QtGraphicalEffects 1.0
 
 Page {
     id: manageRSS
-
+	clip:true
     header: state == "default" ? headerSettings : headerAddFeedSettings
     
     PageHeader {

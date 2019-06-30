@@ -33,13 +33,14 @@ QString Web::get_favicon_url(QUrl url, bool redirected_url) {
 	QString baseUrl = url.url(QUrl::RemovePath);
 	QString data;
 	data = Web::wget(QUrl(baseUrl)); 
-	QRegularExpression rx("<link [^>]*rel=\"shortcut icon\"[^>]*/?>");
+	QRegularExpression rx("<link [^>]*rel=\"(shortcut )?icon\"[^>]*/?>");
 	rx.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
 	QRegularExpressionMatch search = rx.match(data);
 	if(search.hasMatch()) {
 		QRegularExpression rx2("href=\"([^\"]*)\"");
 		rx2.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
-		QRegularExpressionMatch search2 = rx2.match(search.captured(1));
+		qDebug()<<search.captured(0);
+		QRegularExpressionMatch search2 = rx2.match(search.captured(0));
 		if(search2.hasMatch()){
 			if(search2.captured(1).left(4) != "http")
 				return baseUrl+"/"+search2.captured(1);
