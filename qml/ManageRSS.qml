@@ -157,6 +157,15 @@ Page {
                     onTriggered: console.log(RSSCore.removeDBFeed(RSSCore.feedlist[index].dbid))  
                    }
                ]
+           }     
+        
+           trailingActions: ListItemActions {
+               actions: [
+                   Action {
+                    iconName: "edit"
+                    onTriggered: manageRSS.pageStack.addPageToNextColumn(manageRSS, Qt.resolvedUrl("SettingsRSS.qml"), {"dbid": RSSCore.feedlist[index].dbid}); 
+                   }
+               ]
            }
             
         Rectangle {
@@ -174,7 +183,7 @@ Page {
                     width: layout.height
                     height: layout.height
                     fillMode: Image.PreserveAspectCrop
-                        source: if(RSSCore.feedlist[index].faviconUrl){RSSCore.feedlist[index].faviconUrl}else{"../assets/empty.jpg" }
+                        source: if(RSSCore.feedlist[index].faviconUrl != ""){RSSCore.feedlist[index].faviconUrl}else{"../assets/empty.jpg" }
                     visible: false
                     Component.onCompleted: console.log(RSSCore.feedlist[index].faviconUrl) 
                 }

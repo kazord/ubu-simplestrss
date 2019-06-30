@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: simplestrss.kazord\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-29 16:39+0000\n"
+"POT-Creation-Date: 2019-06-30 14:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr ""
 msgid "Enter URL of feed"
 msgstr ""
 
-#: ../qml/Main.qml:29 ../qml/build/tmp/Main.qml:20 simplestrss.desktop.in.h:1
+#: ../qml/Main.qml:45 ../qml/build/tmp/Main.qml:20 simplestrss.desktop.in.h:1
 msgid "SimplestRSS"
 msgstr ""
 
@@ -59,4 +59,8 @@ msgstr ""
 
 #: ../qml/PreviewRSS.qml:39
 msgid "edit"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:16
+msgid "RSS settings"
 msgstr ""

@@ -38,7 +38,7 @@ Page {
                         iconName: "edit"
                         text: i18n.tr("edit")
                         onTriggered: {
-
+                            previewRSS.pageStack.addPageToNextColumn(previewRSS, Qt.resolvedUrl("SettingsRSS.qml"));
                         }
                     }
                ]
