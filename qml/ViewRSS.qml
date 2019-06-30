@@ -32,7 +32,7 @@ Page {
                         onTriggered: {
                             viewFeed.pageStack.addPageToNextColumn(viewFeed, Qt.resolvedUrl("ManageRSS.qml"))
                         }
-                    visible: if(root.width < units.gu(50)){if(root.currentIndexList == 0){true}else{false}}else{false}
+                    visible: if(root.width < units.gu(60)){if(root.currentIndexList == 0){true}else{false}}else{false}
                     }
                ]
                numberOfSlots: 2
