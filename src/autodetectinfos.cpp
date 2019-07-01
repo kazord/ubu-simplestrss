@@ -42,7 +42,14 @@ void AutodetectInfos::setDateFormatRFC() {
 void AutodetectInfos::setDateFormatTXT() {
 	_dateFormat = Qt::TextDate;
 }
-
+QStringList AutodetectInfos::node2list() {
+	QStringList out;
+	for(const AutodetectNode node : _knownNode)
+	{
+		out << node.second+">"+node.first;
+	}
+	return out;
+}
 void AutodetectInfos::updateKnownNode(AutodetectNode node) {
 	if(!_knownNode.contains(node)) {
 		_knownNode.append(node);

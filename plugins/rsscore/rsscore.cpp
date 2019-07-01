@@ -161,6 +161,22 @@ bool RSSCore::insertFeed(QString url) {
 	return true;
 
 }
+QStringList RSSCore::getAutodetectValues(int dbid) {
+		FeedInfos fi = DB::instance()->feed(dbid);
+		return getAutodetectValues(fi.getUrl());
+}
+
+QStringList RSSCore::getAutodetectValues(QString url) {
+
+	AutodetectInfos ai;
+	QXmlStreamReader sr;
+	
+	QString xmldata = Web::instance()->wget(QUrl(url),sr);
+	XML::autodetect(sr,ai);
+	return ai.node2list();
+
+}
+
 int RSSCore::getFeedCount() {
 	qDebug() << DB::instance()->feeds().size();
 	return DB::instance()->feeds().size();

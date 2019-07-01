@@ -32,6 +32,8 @@ public:
     Q_INVOKABLE QString previewFeed(QString url);
     Q_INVOKABLE bool insertFeed(QString url);
     Q_INVOKABLE int getFeedCount();
+    Q_INVOKABLE QStringList getAutodetectValues(int dbid);
+	Q_INVOKABLE QStringList getAutodetectValues(QString url);
     Q_INVOKABLE QString fetchFullArticle(const QString url, const QString mode, const QString data);
     QQmlListProperty<Feed> feedlist();
     QQmlListProperty<Feed> feedlistZero();

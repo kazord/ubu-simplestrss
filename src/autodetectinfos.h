@@ -45,6 +45,7 @@ class AutodetectInfos {
 		
 		void fillFeedInfos(FeedInfos &infos);
 		AutodetectNode getItemNode();
+		QStringList node2list();
 	private:
 		QList<AutodetectNode> _knownNode;
 		AutodetectNode _item;

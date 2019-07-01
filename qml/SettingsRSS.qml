@@ -9,7 +9,11 @@ import QtGraphicalEffects 1.0
 import Ubuntu.Components.ListItems 1.3 as ListItem
     
 Page {
-    id: settingsRSS
+	id: settingsRSS
+	property int dbid: -1
+	property var possibleNode: []
+	property var possibleSubNode: []
+
 	clip:true
     header: PageHeader {
         id: headerSettings
@@ -25,8 +29,13 @@ Page {
                 }
             ]
    }       
-    
-	property int dbid: -1
+    Component.onCompleted: {
+	possibleNode = RSSCore.getAutodetectValues(dbid)
+	possibleSubNode = possibleNode;
+	}
+
+
+
 
     Flickable {
         id: flickableSettings
@@ -80,14 +89,27 @@ Page {
                     verticalAlignment: Text.AlignVCenter
                         
                     ComboBox {
+			id:comboboxitem
                         //currentIndex: 
-                        textRole: "title"
-                        model: settingsColumn.model
+                        //textRole: "title"
+                        model: settingsRSS.possibleNode
                         width: units.gu(20)
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
-                        //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
-                            
+                        onCurrentIndexChanged: {
+	var item = settingsRSS.possibleNode[currentIndex].split('>')[1];
+	var main = settingsRSS.possibleNode[currentIndex].split('>')[0];
+	settingsRSS.possibleSubNode = []
+	for(var i=0 ; i < settingsRSS.possibleNode.length; i++) {
+		console.log("looking for "+settingsRSS.possibleNode[i])
+		if(settingsRSS.possibleNode[i].startsWith(item+">"))
+			settingsRSS.possibleSubNode.push(settingsRSS.possibleNode[i]);
+		console.log(settingsRSS.possibleSubNode.length)
+	}
+	//console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "main", main)) 
+	//console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", item)) 
+	comboboxtitle.model = settingsRSS.possibleSubNode
+ }                           
                         //the background of the combobox
                           background: Rectangle {
                               height: parent.height
@@ -130,8 +152,9 @@ Page {
                         
                     ComboBox {
                         //currentIndex: 
-                        textRole: "title"
-                        model: settingsColumn.model
+			id:comboboxtitle
+                        //textRole: "title"
+                        model: settingsRSS.possibleSubNode
                         width: units.gu(20)
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
