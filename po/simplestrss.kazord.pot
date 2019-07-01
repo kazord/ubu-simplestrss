@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: simplestrss.kazord\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-30 14:39+0000\n"
+"POT-Creation-Date: 2019-07-01 15:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,4 +63,36 @@ msgstr ""
 
 #: ../qml/SettingsRSS.qml:16
 msgid "RSS settings"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:113
+msgid "Container for one article inside the feed"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:161
+msgid "Url of the article"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:209
+msgid "Should contains the source/writer"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:257
+msgid "For filtering"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:305
+msgid "Title of article"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:353
+msgid "Description of the article"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:402
+msgid "Don't forget to select the right date format, it's needed ordering"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:451
+msgid "Image for article"
 msgstr ""

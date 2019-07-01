@@ -74,7 +74,7 @@ Page {
                 Text {
                     text: "Item"
                     width: unit.gu(10)
-                    height: units.gu(5)
+                    height: units.gu(4)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
@@ -87,13 +87,43 @@ Page {
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
-                    }     
+                            
+                        //the background of the combobox
+                          background: Rectangle {
+                              height: parent.height
+                              color: "#b1b1b1"
+                              radius: height/2
+                          }
+
+                        
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("Container for one article inside the feed")
+                                
+                            }
+                                
+
+                        }
+                        
+                    }                        
                 }
 
                 Text {
                     text: "Link"
                     width: unit.gu(10)
-                    height: units.gu(5)
+                    height: units.gu(4)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
@@ -106,13 +136,42 @@ Page {
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
+                            
+                        //the background of the combobox
+                          background: Rectangle {
+                              height: parent.height
+                              color: "#b1b1b1"
+                              radius: height/2
+                          }
+                            
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("Url of the article")
+                                
+                            }
+                                
+
+                        }
+                        
                     }     
                 }
 
                 Text {
                     text: "Author"
                     width: unit.gu(10)
-                    height: units.gu(5)
+                    height: units.gu(4)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
@@ -125,13 +184,42 @@ Page {
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
+                            
+                        //the background of the combobox
+                          background: Rectangle {
+                              height: parent.height
+                              color: "#b1b1b1"
+                              radius: height/2
+                          }
+                            
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("Should contains the source/writer")
+                                
+                            }
+                                
+
+                        }
+                        
                     }     
                 }
 
                 Text {
                     text: "Category"
                     width: unit.gu(10)
-                    height: units.gu(5)
+                    height: units.gu(4)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
@@ -144,13 +232,42 @@ Page {
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
+                            
+                        //the background of the combobox
+                          background: Rectangle {
+                              height: parent.height
+                              color: "#b1b1b1"
+                              radius: height/2
+                          }
+                            
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("For filtering")
+                                
+                            }
+                                
+
+                        }
+                        
                     }     
                 }
 
                 Text {
                     text: "Title"
                     width: unit.gu(10)
-                    height: units.gu(5)
+                    height: units.gu(4)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
@@ -163,13 +280,42 @@ Page {
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
+                            
+                        //the background of the combobox
+                          background: Rectangle {
+                              height: parent.height
+                              color: "#b1b1b1"
+                              radius: height/2
+                          }
+                            
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("Title of article")
+                                
+                            }
+                                
+
+                        }
+                        
                     }     
                 }
 
                 Text {
                     text: "Description"
                     width: unit.gu(10)
-                    height: units.gu(5)
+                    height: units.gu(4)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
@@ -182,13 +328,42 @@ Page {
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
+                            
+                        //the background of the combobox
+                          background: Rectangle {
+                              height: parent.height
+                              color: "#b1b1b1"
+                              radius: height/2
+                          }
+                            
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("Description of the article")
+                                
+                            }
+                                
+
+                        }
+                        
                     }     
                 }
 
                 Text {
                     text: "Date"
                     width: unit.gu(10)
-                    height: units.gu(5)
+                    height: units.gu(4)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
@@ -198,9 +373,39 @@ Page {
                         textRole: "title"
                         model: settingsColumn.model
                         width: units.gu(20)
+                        height: parent.height
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
+                            
+                        //the background of the combobox
+                          background: Rectangle {
+                              height: parent.height
+                              color: "#b1b1b1"
+                              radius: height/2
+                          }
+                            
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("Don't forget to select the right date format, it's needed ordering")
+                                
+                            }
+                                
+
+                        }
+                        
                     }     
                 }
             
@@ -208,7 +413,7 @@ Page {
                 Text {
                     text: "Media"
                     width: unit.gu(10)
-                    height: units.gu(5)
+                    height: units.gu(4)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
@@ -221,6 +426,35 @@ Page {
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
+                            
+                        //the background of the combobox
+                          background: Rectangle {
+                              height: parent.height
+                              color: "#b1b1b1"
+                              radius: height/2
+                          }
+                            
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("Image for article")
+                                
+                            }
+                                
+
+                        }
+                        
                     }     
                 }
 
