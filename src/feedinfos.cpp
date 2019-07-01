@@ -47,6 +47,28 @@ FeedInfosElements FeedInfos::usedElement(QStringRef cmp) const
 		return FeedInfosElements::MULTIMEDIA;
 	return FeedInfosElements::NONE;
 }
+QString FeedInfos::getProp(QString key) const
+{
+	if(key == "main")
+		return _main;
+	if(key == "item")
+		return _item;
+	if(key == "link")
+		return _link;
+	if(key == "author")
+		return _author;
+	if(key == "category")
+		return _category;
+	if(key == "title")
+		return _title;
+	if(key == "desc")
+		return _desc;
+	if(key == "date")
+		return _date;
+	if(key == "multimedia")
+		return _multimedia;
+	return "";
+}
 QString FeedInfos::getTitleColor() const
 {
 	return _titleColor;

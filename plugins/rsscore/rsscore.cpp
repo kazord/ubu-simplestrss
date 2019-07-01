@@ -13,7 +13,7 @@ void RSSCore::speak() {
 }
 Feed* RSSCore::getDBFeed(int dbid) {
 	FeedInfos fi = DB::instance()->feed(dbid);
-	return new Feed(fi.name(), fi.getUrl(), fi.dbid());
+	return new Feed(fi);
 }
 Feed* RSSCore::getFeed(int feedindex) {
 	FeedInfos fi = DB::instance()->feeds().at(feedindex);

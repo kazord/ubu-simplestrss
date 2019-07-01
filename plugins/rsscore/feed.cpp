@@ -15,6 +15,9 @@ QString Feed::faviconUrl() const {
 QString Feed::color() const {
 	return _infos.getTitleColor();
 }
+QString Feed::getProp(QString key) const {
+	return _infos.getProp(key);
+}
 Feed::Feed(QObject *parent) : QObject(parent) 
 {
 }

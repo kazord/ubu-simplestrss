@@ -37,6 +37,7 @@ class FeedInfos {
 		void setName(QString name);
 		void setFavicon(QString favicon);
 		
+		QString getProp(QString key) const;
 
 	protected:
 		int _id;

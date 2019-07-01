@@ -32,6 +32,8 @@ Page {
     Component.onCompleted: {
 	possibleNode = RSSCore.getAutodetectValues(dbid)
 	possibleSubNode = possibleNode;
+	var feed = RSSCore.getDBFeed(settingsRSS.dbid)
+	comboboxitem.currentIndex = possibleNode.indexOf(feed.getProp("main")+">"+feed.getProp("item"))
 	}
 
 
@@ -101,10 +103,8 @@ Page {
 	var main = settingsRSS.possibleNode[currentIndex].split('>')[0];
 	settingsRSS.possibleSubNode = []
 	for(var i=0 ; i < settingsRSS.possibleNode.length; i++) {
-		console.log("looking for "+settingsRSS.possibleNode[i])
 		if(settingsRSS.possibleNode[i].startsWith(item+">"))
 			settingsRSS.possibleSubNode.push(settingsRSS.possibleNode[i]);
-		console.log(settingsRSS.possibleSubNode.length)
 	}
 	//console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "main", main)) 
 	//console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", item)) 

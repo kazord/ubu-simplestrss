@@ -23,6 +23,7 @@ class Feed: public QObject {
 		int dbid() const;
 		QString faviconUrl() const;
 		QString color() const;
+		Q_INVOKABLE QString getProp(QString key) const;
 
 	protected:
 		FeedInfos _infos;

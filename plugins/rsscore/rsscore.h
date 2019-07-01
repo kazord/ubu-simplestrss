@@ -22,8 +22,8 @@ public:
     ~RSSCore() = default;
 
     Q_INVOKABLE void speak();
-    Feed* getDBFeed(int dbid);
-    Feed* getFeed(int feedindex);
+    Q_INVOKABLE Feed* getDBFeed(int dbid);
+    Q_INVOKABLE Feed* getFeed(int feedindex);
     Q_INVOKABLE void removeDBFeed(int dbid);
     Q_INVOKABLE void updateDBFeed(int dbid,QString &key, QString value);
     Q_INVOKABLE void updateDBFeed(int dbid,QString &key, int value);
