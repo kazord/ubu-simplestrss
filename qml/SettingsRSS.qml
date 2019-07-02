@@ -43,13 +43,13 @@ Page {
         id: flickableSettings
         anchors.fill: parent
         anchors.topMargin: settingsRSS.header.height
-        contentHeight: settingsColumn.height
+        contentHeight: settingsRSSColumn.height
         flickableDirection: Flickable.VerticalFlick
         clip: true
 
 
         Column {
-            id: settingsColumn
+            id: settingsRSSColumn
             spacing: units.gu(2)
             anchors {
                 top: parent.top
@@ -58,58 +58,34 @@ Page {
                 topMargin: units.gu(1)
 
             }
-
-
-            property var model: [
-            { title: ":", style:"default" },
-            { title: ":rss", style:"rounded" },
-            { title: "rss:channel", style:"rounded" },
-            { title: "channel:item", style:"rounded" },
-            { title: "item:title", style:"rounded" },
-            { title: "item:link", style:"rounded" },
-            { title: "item:comments", style:"rounded" },
-            { title: "item:pubdate", style:"rounded" },
-            { title: "item:creator", style:"rounded" },
-            { title: "item:category", style:"rounded" },
-            { title: "item:guid", style:"rounded" },
-            { title: "item:description", style:"rounded" },
-            { title: "item:encoded", style:"rounded" },
-            { title: "item:commentrss", style:"rounded" },
-            { title: "item:post-id", style:"rounded" },
-            { title: "none", style:"rounded" },
-
-            ]
-                
-
-                    
+    
+    
                 Text {
-                    text: "Item"
-                    width: unit.gu(10)
+                    text: i18n.tr("Item")
+                    width: units.gu(10)
                     height: units.gu(4)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
                         
                     ComboBox {
-			id:comboboxitem
-                        //currentIndex: 
-                        //textRole: "title"
+                        id:comboboxitem
                         model: settingsRSS.possibleNode
                         width: units.gu(20)
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         onCurrentIndexChanged: {
-	var item = settingsRSS.possibleNode[currentIndex].split('>')[1];
-	var main = settingsRSS.possibleNode[currentIndex].split('>')[0];
-	settingsRSS.possibleSubNode = []
-	for(var i=0 ; i < settingsRSS.possibleNode.length; i++) {
-		if(settingsRSS.possibleNode[i].startsWith(item+">"))
-			settingsRSS.possibleSubNode.push(settingsRSS.possibleNode[i]);
-	}
-	//console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "main", main)) 
-	//console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", item)) 
-	comboboxtitle.model = settingsRSS.possibleSubNode
- }                           
+                            var item = settingsRSS.possibleNode[currentIndex].split('>')[1];
+                            var main = settingsRSS.possibleNode[currentIndex].split('>')[0];
+                            settingsRSS.possibleSubNode = []
+                            for(var i=0 ; i < settingsRSS.possibleNode.length; i++) {
+                                if(settingsRSS.possibleNode[i].startsWith(item+">"))
+                                    settingsRSS.possibleSubNode.push(settingsRSS.possibleNode[i]);
+                            }
+                            //console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "main", main)) 
+                            //console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", item)) 
+                             settingsRSSColumn.comboboxPossibleSubNode = settingsRSS.possibleSubNode //todo a revoir...
+                         }                           
                         //the background of the combobox
                           background: Rectangle {
                               height: parent.height
@@ -140,315 +116,62 @@ Page {
                         }
                         
                     }                        
-                }
+                }    
+    
+property var comboboxPossibleSubNode: []
 
-                Text {
-                    text: "Link"
-                    width: unit.gu(10)
-                    height: units.gu(4)
-                    anchors.left: parent.left
-                    anchors.leftMargin: units.gu(2)
-                    verticalAlignment: Text.AlignVCenter
-                        
-                    ComboBox {
-                        //currentIndex: 
-			id:comboboxtitle
-                        //textRole: "title"
-                        model: settingsRSS.possibleSubNode
-                        width: units.gu(20)
-                        anchors.left: parent.right
-                        anchors.leftMargin: units.gu(2)
-                        //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
-                            
-                        //the background of the combobox
-                          background: Rectangle {
-                              height: parent.height
-                              color: "#b1b1b1"
-                              radius: height/2
-                          }
-                            
-                        Icon {
-                            anchors.left: parent.right
-                            anchors.leftMargin: units.gu(1.5)
-                            anchors.verticalCenter: parent.verticalCenter
-                            width: parent.height-units.gu(1)
-                            height: parent.height-units.gu(1)
-                            name: "help"
-                                
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: ToolTip.visible = true
-                                
-                                ToolTip.delay: 1000
-                                ToolTip.timeout: 5000
-                                ToolTip.text: i18n.tr("Url of the article")
-                                
-                            }
-                                
-
-                        }
-                        
-                    }     
-                }
-
-                Text {
-                    text: "Author"
-                    width: unit.gu(10)
-                    height: units.gu(4)
-                    anchors.left: parent.left
-                    anchors.leftMargin: units.gu(2)
-                    verticalAlignment: Text.AlignVCenter
-                        
-                    ComboBox {
-                        //currentIndex: 
-                        textRole: "title"
-                        model: settingsColumn.model
-                        width: units.gu(20)
-                        anchors.left: parent.right
-                        anchors.leftMargin: units.gu(2)
-                        //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
-                            
-                        //the background of the combobox
-                          background: Rectangle {
-                              height: parent.height
-                              color: "#b1b1b1"
-                              radius: height/2
-                          }
-                            
-                        Icon {
-                            anchors.left: parent.right
-                            anchors.leftMargin: units.gu(1.5)
-                            anchors.verticalCenter: parent.verticalCenter
-                            width: parent.height-units.gu(1)
-                            height: parent.height-units.gu(1)
-                            name: "help"
-                                
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: ToolTip.visible = true
-                                
-                                ToolTip.delay: 1000
-                                ToolTip.timeout: 5000
-                                ToolTip.text: i18n.tr("Should contains the source/writer")
-                                
-                            }
-                                
-
-                        }
-                        
-                    }     
-                }
-
-                Text {
-                    text: "Category"
-                    width: unit.gu(10)
-                    height: units.gu(4)
-                    anchors.left: parent.left
-                    anchors.leftMargin: units.gu(2)
-                    verticalAlignment: Text.AlignVCenter
-                        
-                    ComboBox {
-                        //currentIndex: 
-                        textRole: "title"
-                        model: settingsColumn.model
-                        width: units.gu(20)
-                        anchors.left: parent.right
-                        anchors.leftMargin: units.gu(2)
-                        //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
-                            
-                        //the background of the combobox
-                          background: Rectangle {
-                              height: parent.height
-                              color: "#b1b1b1"
-                              radius: height/2
-                          }
-                            
-                        Icon {
-                            anchors.left: parent.right
-                            anchors.leftMargin: units.gu(1.5)
-                            anchors.verticalCenter: parent.verticalCenter
-                            width: parent.height-units.gu(1)
-                            height: parent.height-units.gu(1)
-                            name: "help"
-                                
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: ToolTip.visible = true
-                                
-                                ToolTip.delay: 1000
-                                ToolTip.timeout: 5000
-                                ToolTip.text: i18n.tr("For filtering")
-                                
-                            }
-                                
-
-                        }
-                        
-                    }     
-                }
-
-                Text {
-                    text: "Title"
-                    width: unit.gu(10)
-                    height: units.gu(4)
-                    anchors.left: parent.left
-                    anchors.leftMargin: units.gu(2)
-                    verticalAlignment: Text.AlignVCenter
-                        
-                    ComboBox {
-                        //currentIndex: 
-                        textRole: "title"
-                        model: settingsColumn.model
-                        width: units.gu(20)
-                        anchors.left: parent.right
-                        anchors.leftMargin: units.gu(2)
-                        //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
-                            
-                        //the background of the combobox
-                          background: Rectangle {
-                              height: parent.height
-                              color: "#b1b1b1"
-                              radius: height/2
-                          }
-                            
-                        Icon {
-                            anchors.left: parent.right
-                            anchors.leftMargin: units.gu(1.5)
-                            anchors.verticalCenter: parent.verticalCenter
-                            width: parent.height-units.gu(1)
-                            height: parent.height-units.gu(1)
-                            name: "help"
-                                
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: ToolTip.visible = true
-                                
-                                ToolTip.delay: 1000
-                                ToolTip.timeout: 5000
-                                ToolTip.text: i18n.tr("Title of article")
-                                
-                            }
-                                
-
-                        }
-                        
-                    }     
-                }
-
-                Text {
-                    text: "Description"
-                    width: unit.gu(10)
-                    height: units.gu(4)
-                    anchors.left: parent.left
-                    anchors.leftMargin: units.gu(2)
-                    verticalAlignment: Text.AlignVCenter
-                        
-                    ComboBox {
-                        //currentIndex: 
-                        textRole: "title"
-                        model: settingsColumn.model
-                        width: units.gu(20)
-                        anchors.left: parent.right
-                        anchors.leftMargin: units.gu(2)
-                        //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
-                            
-                        //the background of the combobox
-                          background: Rectangle {
-                              height: parent.height
-                              color: "#b1b1b1"
-                              radius: height/2
-                          }
-                            
-                        Icon {
-                            anchors.left: parent.right
-                            anchors.leftMargin: units.gu(1.5)
-                            anchors.verticalCenter: parent.verticalCenter
-                            width: parent.height-units.gu(1)
-                            height: parent.height-units.gu(1)
-                            name: "help"
-                                
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: ToolTip.visible = true
-                                
-                                ToolTip.delay: 1000
-                                ToolTip.timeout: 5000
-                                ToolTip.text: i18n.tr("Description of the article")
-                                
-                            }
-                                
-
-                        }
-                        
-                    }     
-                }
-
-                Text {
-                    text: "Date"
-                    width: unit.gu(10)
-                    height: units.gu(4)
-                    anchors.left: parent.left
-                    anchors.leftMargin: units.gu(2)
-                    verticalAlignment: Text.AlignVCenter
-                        
-                    ComboBox {
-                        //currentIndex: 
-                        textRole: "title"
-                        model: settingsColumn.model
-                        width: units.gu(20)
-                        height: parent.height
-                        anchors.left: parent.right
-                        anchors.leftMargin: units.gu(2)
-                        //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
-                            
-                        //the background of the combobox
-                          background: Rectangle {
-                              height: parent.height
-                              color: "#b1b1b1"
-                              radius: height/2
-                          }
-                            
-                        Icon {
-                            anchors.left: parent.right
-                            anchors.leftMargin: units.gu(1.5)
-                            anchors.verticalCenter: parent.verticalCenter
-                            width: parent.height-units.gu(1)
-                            height: parent.height-units.gu(1)
-                            name: "help"
-                                
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: ToolTip.visible = true
-                                
-                                ToolTip.delay: 1000
-                                ToolTip.timeout: 5000
-                                ToolTip.text: i18n.tr("Don't forget to select the right date format, it's needed ordering")
-                                
-                            }
-                                
-
-                        }
-                        
-                    }     
-                }
+property var settingsModel: [
+{ name: i18n.tr("Link"), type: "link", help: i18n.tr("Url of the article") },
+{ name: i18n.tr("Author"), type: "author", help: i18n.tr("Should contains the source/writer") },
+{ name: i18n.tr("Category"), type: "category", help: i18n.tr("For filtering") },
+{ name: i18n.tr("Title"), type: "title", help: i18n.tr("Title of article") },
+{ name: i18n.tr("Description"), type: "desc", help: i18n.tr("Description of the article") },
+{ name: i18n.tr("Date"), type: "date", help: i18n.tr("Don't forget to select the right date format, it's needed ordering") },
+{ name: i18n.tr("Media"), type: "multimedia", help: i18n.tr("Image for article") }
+]
+    
+    ListView {
+        id: listCombo
+        model: settingsRSSColumn.settingsModel
             
+        width: parent.width
+        height: contentHeight
             
-                Text {
-                    text: "Media"
-                    width: unit.gu(10)
-                    height: units.gu(4)
+            delegate: Item{
+                    height: units.gu(6)
+
+                property var element: model.modelData ? model.modelData : model
+
+                Text {       
+                    text: "> " + element.name 
+                    width: units.gu(10)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
-                    verticalAlignment: Text.AlignVCenter
-                        
+                    anchors.verticalCenter: parent.verticalCenter
+   
+//todo Fonctionne pas !!!                         
+Component.onCompleted: {
+	var feed = RSSCore.getDBFeed(settingsRSS.dbid)
+    comboboxtitle.currentIndex = settingsRSSColumn.comboboxPossibleSubNode.indexOf(feed.getProp("item")+">"+feed.getProp(element.type))
+}
+    
                     ComboBox {
-                        //currentIndex: 
-                        textRole: "title"
-                        model: settingsColumn.model
+			            id:comboboxtitle
+                        //model: settingsRSSColumn.comboboxPossibleSubNode
                         width: units.gu(20)
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
-                        //onCurrentIndexChanged: console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", currentText)) 
+                        anchors.verticalCenter: parent.verticalCenter
+                        
+                            onCurrentIndexChanged: {
+                                var item = settingsRSSColumn.comboboxPossibleSubNode[currentIndex].split('>')[1];
+                               
+                            
+                               //todo 
+                                //console.log(RSSCore.updateDBFeed(settingsRSS.dbid, element.type, item)) 
+                            
+                            }
+                            
                             
                         //the background of the combobox
                           background: Rectangle {
@@ -471,7 +194,7 @@ Page {
                                 
                                 ToolTip.delay: 1000
                                 ToolTip.timeout: 5000
-                                ToolTip.text: i18n.tr("Image for article")
+                                ToolTip.text: element.help
                                 
                             }
                                 
@@ -480,13 +203,8 @@ Page {
                         
                     }     
                 }
-
-
-
-
-
-            
-
+            }
+    }
 
 
         } // column

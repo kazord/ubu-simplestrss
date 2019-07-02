@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: simplestrss.kazord\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 15:06+0000\n"
+"POT-Creation-Date: 2019-07-02 11:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,42 +57,70 @@ msgstr ""
 msgid "Feed preview"
 msgstr ""
 
-#: ../qml/PreviewRSS.qml:39
-msgid "edit"
-msgstr ""
-
-#: ../qml/SettingsRSS.qml:16
+#: ../qml/SettingsRSS.qml:20
 msgid "RSS settings"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:113
+#: ../qml/SettingsRSS.qml:64
+msgid "Item"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:111
 msgid "Container for one article inside the feed"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:161
+#: ../qml/SettingsRSS.qml:124
+msgid "Link"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:124
 msgid "Url of the article"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:209
+#: ../qml/SettingsRSS.qml:125
+msgid "Author"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:125
 msgid "Should contains the source/writer"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:257
+#: ../qml/SettingsRSS.qml:126
+msgid "Category"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:126
 msgid "For filtering"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:305
+#: ../qml/SettingsRSS.qml:127
+msgid "Title"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:127
 msgid "Title of article"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:353
+#: ../qml/SettingsRSS.qml:128
+msgid "Description"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:128
 msgid "Description of the article"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:402
+#: ../qml/SettingsRSS.qml:129
+msgid "Date"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:129
 msgid "Don't forget to select the right date format, it's needed ordering"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:451
+#: ../qml/SettingsRSS.qml:130
+msgid "Media"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:130
 msgid "Image for article"
 msgstr ""
