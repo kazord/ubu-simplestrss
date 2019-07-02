@@ -66,6 +66,8 @@ namespace XML {
 
 		void parse4Analyse(QXmlStreamReader &xml, AutodetectInfos &info, QString parentName) {
 			AutodetectNode node(xml.name().toString(), parentName);	
+			qDebug() << "~" << xml.name().toString() << "~";
+			info.updateKnownNode(node);
 			bool next = true;
 			QString name(xml.name().toString());
 			if(name == "channel" 
@@ -82,18 +84,24 @@ namespace XML {
 			if(name == "description"
 					|| name == "subtitle"
 					|| name == "summary"
+					|| name == "encoded" //wordpress default fullmode (content:encoded parsed as encoded)
 					|| name == "content") {
 				info.updateDesc(node);
 				QString content = readContent(xml);
 				next = false;
-				if(content.isEmpty()) //this is a trap description, *ignore it*
+				if(content.isEmpty()) { //this is a trap description, *ignore it*
+					qDebug() << "description with :" << name;
 					return;
+				}
 				QRegExp rx("&[a-zA-Z]{2,4};"); //looking for encoded html
 				if(content.contains(rx)) {
 					info.useHtmlDecode();	
 				}
 			}
-			if(name == "image"
+			if(
+					name == "content" //wordpress default image (media:content parsed as content)
+					|| name == "media"
+					|| name == "image"
 					|| name == "enclosure")
 				info.updateMultimedia(node);
 			if(name == "link")
@@ -121,7 +129,6 @@ namespace XML {
 					|| name == "creator") {
 				info.updateAuthor(node);
 			}
-			info.updateKnownNode(node);
 			if(next)
 				xml.readNext();
 			while (!xml.atEnd() && !(xml.isEndElement() && xml.name() == node.first))

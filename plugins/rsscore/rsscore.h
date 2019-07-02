@@ -27,6 +27,7 @@ public:
     Q_INVOKABLE bool removeDBFeed(int dbid);
     Q_INVOKABLE bool updateDBFeed(int dbid,QString key, QString value);
     Q_INVOKABLE bool updateDBFeedInt(int dbid,QString key, int value);
+    Q_INVOKABLE bool updateDBAutoFeed(int dbid);
     Q_INVOKABLE QString fetchFeed(int dbid);
     Q_INVOKABLE void cancel();
     Q_INVOKABLE QString searchFeed(QString url);

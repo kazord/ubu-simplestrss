@@ -36,6 +36,33 @@ bool RSSCore::updateDBFeed(int dbid, QString key, QString value) {
 bool RSSCore::updateDBFeedInt(int dbid, QString key, int value) {
 	return DB::instance()->updateFeed(dbid, key, value);
 }
+bool RSSCore::updateDBAutoFeed(int dbid) {
+	FeedInfos fi2 = DB::instance()->feed(dbid);
+	QString url = fi2.getUrl();
+	AutodetectInfos ai;
+	QXmlStreamReader sr;
+	
+	QString xmldata = Web::instance()->wget(QUrl(url),sr);
+	XML::autodetect(sr,ai);
+	sr.clear();
+	sr.addData(xmldata);
+	QStringList names = XML::foundChannel(sr,ai.getItemNode().second, ai.getItemNode().first);
+
+	if(!ai.isValid())
+		return false;
+
+	FeedInfos fi;
+	ai.fillFeedInfos(fi);
+	fi.setUrl(url);
+	if(names.size() > 0)
+		fi.setName(names.first());
+	else
+		fi.setName("Unknow");
+	fi.setFavicon(Web::instance()->get_favicon_url(QUrl(url)));
+	if(!DB::instance()->updateFeed(dbid, fi))
+		return false;
+	return true;
+}
 QString RSSCore::fetchFeed(int dbid) {
 	qDebug() << "fetching dbid " << dbid;
 	QXmlStreamReader sr;
