@@ -13,6 +13,31 @@ Page {
 	property int dbid: -1
 	property var possibleNode: []
 	property var possibleSubNode: []
+	property var feed
+	onPossibleNodeChanged: { 
+		if(!feed) return
+		settingsRSS.possibleSubNode = []
+                for(var i=0 ; i < settingsRSS.possibleNode.length; i++) {
+                	if(settingsRSS.possibleNode[i].startsWith(settingsRSS.possibleNode[comboboxitem.currentIndex].split('>')[1]+">"))
+                        	settingsRSS.possibleSubNode.push(settingsRSS.possibleNode[i]);
+                }
+		console.log(settingsRSS.possibleSubNode)
+		possibleSubNodeChanged()
+	}
+	onPossibleSubNodeChanged: {
+		if(!feed) return
+		for(var i=0; i< settingsRSSColumn.settingsModel.length+1;i++) {//liewview selector is the +1 and if
+			if(listCombo.children[0].children[i].children.length>0) {
+				//listCombo.children[0].children[i].children[0].children[0].model = settingsRSS.possibleSubNode
+				listCombo.children[0].children[i].children[0].children[0].modelChanged
+				
+				console.log("sub changed "+i)
+			}
+		}
+		console.log("sub changed")
+		//console.log(listCombo.children[0].children[0].children[0].children[0].model)
+	 }
+
 
 	clip:true
     header: PageHeader {
@@ -30,10 +55,10 @@ Page {
             ]
    }       
     Component.onCompleted: {
+	settingsRSS.feed = RSSCore.getDBFeed(settingsRSS.dbid)
 	possibleNode = RSSCore.getAutodetectValues(dbid)
-	possibleSubNode = possibleNode;
-	var feed = RSSCore.getDBFeed(settingsRSS.dbid)
-	comboboxitem.currentIndex = possibleNode.indexOf(feed.getProp("main")+">"+feed.getProp("item"))
+	comboboxitem.currentIndex = possibleNode.indexOf(settingsRSS.feed.getProp("main")+">"+settingsRSS.feed.getProp("item"))
+	possibleNodeChanged()
 	}
 
 
@@ -77,14 +102,8 @@ Page {
                         onCurrentIndexChanged: {
                             var item = settingsRSS.possibleNode[currentIndex].split('>')[1];
                             var main = settingsRSS.possibleNode[currentIndex].split('>')[0];
-                            settingsRSS.possibleSubNode = []
-                            for(var i=0 ; i < settingsRSS.possibleNode.length; i++) {
-                                if(settingsRSS.possibleNode[i].startsWith(item+">"))
-                                    settingsRSS.possibleSubNode.push(settingsRSS.possibleNode[i]);
-                            }
-                            //console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "main", main)) 
-                            //console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", item)) 
-                             settingsRSSColumn.comboboxPossibleSubNode = settingsRSS.possibleSubNode //todo a revoir...
+                            console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "main", main)) 
+                            console.log(RSSCore.updateDBFeed(settingsRSS.dbid, "item", item)) 
                          }                           
                         //the background of the combobox
                           background: Rectangle {
@@ -118,17 +137,16 @@ Page {
                     }                        
                 }    
     
-property var comboboxPossibleSubNode: []
 
-property var settingsModel: [
-{ name: i18n.tr("Link"), type: "link", help: i18n.tr("Url of the article") },
-{ name: i18n.tr("Author"), type: "author", help: i18n.tr("Should contains the source/writer") },
-{ name: i18n.tr("Category"), type: "category", help: i18n.tr("For filtering") },
-{ name: i18n.tr("Title"), type: "title", help: i18n.tr("Title of article") },
-{ name: i18n.tr("Description"), type: "desc", help: i18n.tr("Description of the article") },
-{ name: i18n.tr("Date"), type: "date", help: i18n.tr("Don't forget to select the right date format, it's needed ordering") },
-{ name: i18n.tr("Media"), type: "multimedia", help: i18n.tr("Image for article") }
-]
+		property var settingsModel: [
+			{ name: i18n.tr("Link"), type: "link", help: i18n.tr("Url of the article") },
+			{ name: i18n.tr("Author"), type: "author", help: i18n.tr("Should contains the source/writer") },
+			{ name: i18n.tr("Category"), type: "category", help: i18n.tr("For filtering") },
+			{ name: i18n.tr("Title"), type: "title", help: i18n.tr("Title of article") },
+			{ name: i18n.tr("Description"), type: "desc", help: i18n.tr("Description of the article") },
+			{ name: i18n.tr("Date"), type: "date", help: i18n.tr("Don't forget to select the right date format, it's needed ordering") },
+			{ name: i18n.tr("Media"), type: "multimedia", help: i18n.tr("Image for article") }
+	]
     
     ListView {
         id: listCombo
@@ -140,7 +158,7 @@ property var settingsModel: [
             delegate: Item{
                     height: units.gu(6)
 
-                property var element: model.modelData ? model.modelData : model
+                property var element: listCombo.model[index]
 
                 Text {       
                     text: "> " + element.name 
@@ -149,29 +167,29 @@ property var settingsModel: [
                     anchors.leftMargin: units.gu(2)
                     anchors.verticalCenter: parent.verticalCenter
    
-//todo Fonctionne pas !!!                         
-Component.onCompleted: {
-	var feed = RSSCore.getDBFeed(settingsRSS.dbid)
-    comboboxtitle.currentIndex = settingsRSSColumn.comboboxPossibleSubNode.indexOf(feed.getProp("item")+">"+feed.getProp(element.type))
-}
     
                     ComboBox {
-			            id:comboboxtitle
+			id:comboboxtitle
                         //model: settingsRSSColumn.comboboxPossibleSubNode
+                        model: settingsRSS.possibleSubNode
                         width: units.gu(20)
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         anchors.verticalCenter: parent.verticalCenter
                         
                             onCurrentIndexChanged: {
-                                var item = settingsRSSColumn.comboboxPossibleSubNode[currentIndex].split('>')[1];
-                               
-                            
-                               //todo 
-                                //console.log(RSSCore.updateDBFeed(settingsRSS.dbid, element.type, item)) 
+                                if(settingsRSS.possibleSubNode[currentIndex]) {
+					var item = settingsRSS.possibleSubNode[currentIndex].split('>')[1];
+					console.log(item)
+					console.log(RSSCore.updateDBFeed(settingsRSS.dbid, element.type, item)) 
+				}
                             
                             }
                             
+			onModelChanged: {
+			    //console.log(settingsRSS.feed.getProp("item")+">"+settingsRSS.feed.getProp(element.type))
+			    currentIndex = settingsRSS.possibleSubNode.indexOf(settingsRSS.feed.getProp("item")+">"+settingsRSS.feed.getProp(element.type))
+			}
                             
                         //the background of the combobox
                           background: Rectangle {

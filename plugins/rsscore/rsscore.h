@@ -24,10 +24,11 @@ public:
     Q_INVOKABLE void speak();
     Q_INVOKABLE Feed* getDBFeed(int dbid);
     Q_INVOKABLE Feed* getFeed(int feedindex);
-    Q_INVOKABLE void removeDBFeed(int dbid);
-    Q_INVOKABLE void updateDBFeed(int dbid,QString &key, QString value);
-    Q_INVOKABLE void updateDBFeed(int dbid,QString &key, int value);
+    Q_INVOKABLE bool removeDBFeed(int dbid);
+    Q_INVOKABLE bool updateDBFeed(int dbid,QString key, QString value);
+    Q_INVOKABLE bool updateDBFeedInt(int dbid,QString key, int value);
     Q_INVOKABLE QString fetchFeed(int dbid);
+    Q_INVOKABLE void cancel();
     Q_INVOKABLE QString searchFeed(QString url);
     Q_INVOKABLE QString previewFeed(QString url);
     Q_INVOKABLE bool insertFeed(QString url);

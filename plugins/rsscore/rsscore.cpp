@@ -19,16 +19,22 @@ Feed* RSSCore::getFeed(int feedindex) {
 	FeedInfos fi = DB::instance()->feeds().at(feedindex);
 	return new Feed(fi);
 }
-void RSSCore::removeDBFeed(int dbid) {
-	DB::instance()->removeFeed(dbid);
-    emit feedlistChanged();
+bool RSSCore::removeDBFeed(int dbid) {
+	if(DB::instance()->removeFeed(dbid)) {
+	    emit feedlistChanged();
+	    return true;
+	}
+	return false;
+}
+void RSSCore::cancel() {
+	Web::instance()->cancel();
 }
 //key : name = ?, url = ?, main = ?, item = ?, link = ?, author = ?, category = ?, title = ?, desc = ?, date = ?, multimedia = ?, color = ?, date_format = ?, cleanHTML = ?, tagsRemove = ?, favicon = ?
-void RSSCore::updateDBFeed(int dbid, QString &key, QString value) {
-	DB::instance()->updateFeed(dbid, key, value);
+bool RSSCore::updateDBFeed(int dbid, QString key, QString value) {
+	return DB::instance()->updateFeed(dbid, key, value);
 }
-void RSSCore::updateDBFeed(int dbid, QString &key, int value) {
-	DB::instance()->updateFeed(dbid, key, value);
+bool RSSCore::updateDBFeedInt(int dbid, QString key, int value) {
+	return DB::instance()->updateFeed(dbid, key, value);
 }
 QString RSSCore::fetchFeed(int dbid) {
 	qDebug() << "fetching dbid " << dbid;
