@@ -33,13 +33,6 @@ Page {
                             console.log(RSSCore.insertFeed(previewRSS.feedURL))
                             removePages(previewRSS);
                         }
-                    },
-                    Action {
-                        iconName: "edit"
-                        text: i18n.tr("edit")
-                        onTriggered: {
-                            previewRSS.pageStack.addPageToNextColumn(previewRSS, Qt.resolvedUrl("SettingsRSS.qml"));
-                        }
                     }
                ]
                numberOfSlots: 2
