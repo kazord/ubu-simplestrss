@@ -8,6 +8,7 @@
 #include <QObject>
 
 class Web : QObject {
+	Q_OBJECT
 
 	public:
 		static Web *instance();
@@ -27,6 +28,8 @@ class Web : QObject {
 		QString manualFetchFullArticle(const QUrl url, const QString divID);
 	//slots:
 //		void replyReceived(QNetworkReply *reply);	
+	signals:
+		void cancelled();
 	private:
 		Web();
 		static Web* _instance;

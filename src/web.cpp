@@ -73,7 +73,11 @@ QString Web::get_source_url_from_feedly(QUrl src_url, QString redirected_url) {
 
 }
 void Web::cancel() {
-	_reply->abort();
+	qDebug() << "web request cancelled";
+	if(_reply != nullptr) {
+		_reply->abort();
+		emit cancelled();
+	}
 }
 
 //void get(QUrl path, parameters, QXmlStreamReader &reader);
@@ -84,10 +88,12 @@ QString Web::wget(QUrl url) {
 	//request.setRedirectPolicy(QNetworkRequest::UserVerifiedRedirectPolicy);
 	//request.setAttribute(QNetworkRequest::UserAgentHeader, QVariant(QString(CUSTOM_AGENT)));
 	request.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache);
-	//request.setAttribute(QNetworkRequest::FollowRedirectsAttribute,QVariant(true));
+	request.setAttribute(QNetworkRequest::FollowRedirectsAttribute,QVariant(true));
 	qDebug() << "Starting "<<url<<" request ";
 	_reply = _manager->get(request);
 	QEventLoop loop;
+	connect(this, SIGNAL(cancelled()),
+		&loop,SLOT(quit()));
 	connect(_reply, SIGNAL(finished()),
 		&loop,SLOT(quit()));
 	loop.exec();
@@ -95,9 +101,12 @@ QString Web::wget(QUrl url) {
 	if(_reply->error() != QNetworkReply::NoError) //something happen, debug&leave
 	{
 		qDebug() << "Network Error for "<<url<<" : "<<_reply->error();
+		QString error = "";
+		if(_reply->error() == QNetworkReply::OperationCanceledError)
+			error = "STOPPLZ";//tell to stop
 		_reply->deleteLater();
 		_reply = nullptr;
-		return "";
+		return error;
 	}
 	QByteArray output_array = _reply->readAll();
 	QString output = QString::fromUtf8(output_array); 

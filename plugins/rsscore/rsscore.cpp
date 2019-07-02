@@ -73,7 +73,9 @@ QString RSSCore::fetchFeed(int dbid) {
 		QQueue<FeedInfos> feedlist = DB::instance()->feeds();
 		for(const FeedInfos fi : feedlist) {
 			sr.clear();
-			Web::instance()->wget(fi.getUrl(),sr);
+			if(Web::instance()->wget(fi.getUrl(),sr) == "STOPPLZ")//request cancelled
+				return "";
+			qDebug() << sr.text();
 			XML::extractArticles(fi, la, sr);
 		}
 		//sort la
