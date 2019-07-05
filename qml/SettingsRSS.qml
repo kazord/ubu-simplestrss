@@ -14,6 +14,7 @@ Page {
 	property var possibleNode: []
 	property var possibleSubNode: []
 	property var feed
+        
 	onPossibleNodeChanged: { 
 		if(!feed) return
 		settingsRSS.possibleSubNode = []
@@ -53,6 +54,15 @@ Page {
                     }
                 }
             ]
+            trailingActionBar.actions: [
+                    Action {
+                        iconName: "reset"
+                        text: "reset"
+                        onTriggered: {   
+                            RSSCore.updateDBAutoFeed(dbid) 
+                            }
+                    }
+            ]
    }       
     Component.onCompleted: {
 	settingsRSS.feed = RSSCore.getDBFeed(settingsRSS.dbid)
@@ -84,6 +94,86 @@ Page {
 
             }
     
+                Text {
+                    text: i18n.tr("Color")
+                    width: units.gu(10)
+                    height: units.gu(4)
+                    anchors.left: parent.left
+                    anchors.leftMargin: units.gu(2)
+                    verticalAlignment: Text.AlignVCenter
+                        
+                    TextField {
+                        id: textFieldColor
+                        width: units.gu(20)
+                        height: units.gu(4)
+                        anchors.left: parent.right
+                        anchors.leftMargin: units.gu(2)
+                        text: RSSCore.getDBFeed(settingsRSS.dbid).titleColor
+                        onTextChanged: RSSCore.updateDBFeed(settingsRSS.dbid, "color", text)
+
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("Color of feed (black by default)")
+                                
+                            }
+                                
+
+                        }
+                        
+                    }                        
+                }
+    
+                Text {
+                    text: i18n.tr("Date format")
+                    width: units.gu(10)
+                    height: units.gu(4)
+                    anchors.left: parent.left
+                    anchors.leftMargin: units.gu(2)
+                    verticalAlignment: Text.AlignVCenter
+                        
+                    TextField {
+                        width: units.gu(20)
+                        height: units.gu(4)
+                        anchors.left: parent.right
+                        anchors.leftMargin: units.gu(2)
+                        text: RSSCore.getDBFeed(settingsRSS.dbid).getProp("date_format")
+                        onTextChanged: RSSCore.updateDBFeed(settingsRSS.dbid, "date_format", text)
+                                                
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("Format date (ex: yyyy/mm/dd)")
+                                
+                            }
+                                
+
+                        }
+                        
+                    }                        
+                }
     
                 Text {
                     text: i18n.tr("Item")
@@ -97,6 +187,7 @@ Page {
                         id:comboboxitem
                         model: settingsRSS.possibleNode
                         width: units.gu(20)
+                        height: units.gu(4)
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         onCurrentIndexChanged: {
@@ -173,6 +264,7 @@ Page {
                         //model: settingsRSSColumn.comboboxPossibleSubNode
                         model: settingsRSS.possibleSubNode
                         width: units.gu(20)
+                        height: units.gu(4)
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         anchors.verticalCenter: parent.verticalCenter
@@ -224,6 +316,8 @@ Page {
             }
     }
 
+    
+    
 
         } // column
     } //flickable
