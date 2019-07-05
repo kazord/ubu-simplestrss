@@ -55,7 +55,6 @@ Page {
             }
             
             Text{
-                anchors.fill: parent
                 width: parent.width
                 wrapMode:Text.WordWrap
                 text: viewDetailNews.descNews
