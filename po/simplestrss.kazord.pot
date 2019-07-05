@@ -3,12 +3,14 @@
 # This file is distributed under the same license as the simplestrss.kazord package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#: ../qml/SettingsRSS.qml:345 ../qml/SettingsRSS.qml:346
+#: ../qml/SettingsRSS.qml:347
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: simplestrss.kazord\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-02 11:37+0000\n"
+"POT-Creation-Date: 2019-07-05 13:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,70 +59,90 @@ msgstr ""
 msgid "Feed preview"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:20
+#: ../qml/SettingsRSS.qml:46
 msgid "RSS settings"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:64
+#: ../qml/SettingsRSS.qml:98
+msgid "Color"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:128
+msgid "Color of feed (ex: #B1B1B1 OR grey)"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:140
 msgid "Item"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:111
+#: ../qml/SettingsRSS.qml:182
 msgid "Container for one article inside the feed"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:124
+#: ../qml/SettingsRSS.qml:194
 msgid "Link"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:124
+#: ../qml/SettingsRSS.qml:194
 msgid "Url of the article"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:125
+#: ../qml/SettingsRSS.qml:195
 msgid "Author"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:125
+#: ../qml/SettingsRSS.qml:195
 msgid "Should contains the source/writer"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:126
+#: ../qml/SettingsRSS.qml:196
 msgid "Category"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:126
+#: ../qml/SettingsRSS.qml:196
 msgid "For filtering"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:127
+#: ../qml/SettingsRSS.qml:197
 msgid "Title"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:127
+#: ../qml/SettingsRSS.qml:197
 msgid "Title of article"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:128
+#: ../qml/SettingsRSS.qml:198
 msgid "Description"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:128
+#: ../qml/SettingsRSS.qml:198
 msgid "Description of the article"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:129
-msgid "Date"
-msgstr ""
-
-#: ../qml/SettingsRSS.qml:129
-msgid "Don't forget to select the right date format, it's needed ordering"
-msgstr ""
-
-#: ../qml/SettingsRSS.qml:130
+#: ../qml/SettingsRSS.qml:199
 msgid "Media"
 msgstr ""
 
-#: ../qml/SettingsRSS.qml:130
+#: ../qml/SettingsRSS.qml:199
 msgid "Image for article"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:200
+msgid "Date"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:200
+msgid "Don't forget to select the right date format, it's needed ordering"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:283
+msgid "Format date"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:332
+msgid "Format date (enum Qt::DateFormat)"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:351 ../qml/SettingsRSS.qml:397
+msgid "Format Content"
 msgstr ""

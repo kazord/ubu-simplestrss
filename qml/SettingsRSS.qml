@@ -78,7 +78,7 @@ Page {
         id: flickableSettings
         anchors.fill: parent
         anchors.topMargin: settingsRSS.header.height
-        contentHeight: settingsRSSColumn.height
+        contentHeight: settingsRSSColumn.height+units.gu(2)
         flickableDirection: Flickable.VerticalFlick
         clip: true
 
@@ -96,7 +96,7 @@ Page {
     
                 Text {
                     text: i18n.tr("Color")
-                    width: units.gu(10)
+                    width: units.gu(13)
                     height: units.gu(4)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
@@ -125,7 +125,7 @@ Page {
                                 
                                 ToolTip.delay: 1000
                                 ToolTip.timeout: 5000
-                                ToolTip.text: i18n.tr("Color of feed (black by default)")
+                                ToolTip.text: i18n.tr("Color of feed (ex: #B1B1B1 OR grey)")
                                 
                             }
                                 
@@ -135,49 +135,10 @@ Page {
                     }                        
                 }
     
-                Text {
-                    text: i18n.tr("Date format")
-                    width: units.gu(10)
-                    height: units.gu(4)
-                    anchors.left: parent.left
-                    anchors.leftMargin: units.gu(2)
-                    verticalAlignment: Text.AlignVCenter
-                        
-                    TextField {
-                        width: units.gu(20)
-                        height: units.gu(4)
-                        anchors.left: parent.right
-                        anchors.leftMargin: units.gu(2)
-                        text: RSSCore.getDBFeed(settingsRSS.dbid).getProp("date_format")
-                        onTextChanged: RSSCore.updateDBFeed(settingsRSS.dbid, "date_format", text)
-                                                
-                        Icon {
-                            anchors.left: parent.right
-                            anchors.leftMargin: units.gu(1.5)
-                            anchors.verticalCenter: parent.verticalCenter
-                            width: parent.height-units.gu(1)
-                            height: parent.height-units.gu(1)
-                            name: "help"
-                                
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: ToolTip.visible = true
-                                
-                                ToolTip.delay: 1000
-                                ToolTip.timeout: 5000
-                                ToolTip.text: i18n.tr("Format date (ex: yyyy/mm/dd)")
-                                
-                            }
-                                
-
-                        }
-                        
-                    }                        
-                }
     
                 Text {
                     text: i18n.tr("Item")
-                    width: units.gu(10)
+                    width: units.gu(13)
                     height: units.gu(4)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
@@ -235,8 +196,8 @@ Page {
 			{ name: i18n.tr("Category"), type: "category", help: i18n.tr("For filtering") },
 			{ name: i18n.tr("Title"), type: "title", help: i18n.tr("Title of article") },
 			{ name: i18n.tr("Description"), type: "desc", help: i18n.tr("Description of the article") },
-			{ name: i18n.tr("Date"), type: "date", help: i18n.tr("Don't forget to select the right date format, it's needed ordering") },
-			{ name: i18n.tr("Media"), type: "multimedia", help: i18n.tr("Image for article") }
+			{ name: i18n.tr("Media"), type: "multimedia", help: i18n.tr("Image for article") },
+            { name: i18n.tr("Date"), type: "date", help: i18n.tr("Don't forget to select the right date format, it's needed ordering") }
 	]
     
     ListView {
@@ -253,14 +214,14 @@ Page {
 
                 Text {       
                     text: "> " + element.name 
-                    width: units.gu(10)
+                    width: units.gu(13)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     anchors.verticalCenter: parent.verticalCenter
    
     
                     ComboBox {
-			id:comboboxtitle
+			             id:comboboxtitle
                         //model: settingsRSSColumn.comboboxPossibleSubNode
                         model: settingsRSS.possibleSubNode
                         width: units.gu(20)
@@ -317,6 +278,132 @@ Page {
     }
 
     
+
+                Text {
+                    text: i18n.tr("Format date") 
+                    width: units.gu(13)
+                    height: units.gu(4)
+                    anchors.left: parent.left
+                    anchors.leftMargin: units.gu(2)
+                    verticalAlignment: Text.AlignVCenter
+                        
+                        
+                    ComboBox {
+
+                        width: units.gu(20)
+                        height: units.gu(4)
+                        anchors.left: parent.right
+                        anchors.leftMargin: units.gu(2)
+                        model: [ "ISO", "RFC", "TXT" ]
+                        currentIndex: {
+                            if(RSSCore.getDBFeed(settingsRSS.dbid).getProp("date_format") == 0){2}
+                            if(RSSCore.getDBFeed(settingsRSS.dbid).getProp("date_format") == 1){0}
+                            if(RSSCore.getDBFeed(settingsRSS.dbid).getProp("date_format") == 8){1}                                
+                        }
+                        
+                        onCurrentIndexChanged: {
+                            if(currentIndex == 0){RSSCore.updateDBFeedINT(settingsRSS.dbid, "date_format", 1)}
+                            if(currentIndex == 1){RSSCore.updateDBFeedINT(settingsRSS.dbid, "date_format", 8)}
+                            if(currentIndex == 2){RSSCore.updateDBFeedINT(settingsRSS.dbid, "date_format", 0)} 
+                         }         
+                        
+                        //the background of the combobox
+                          background: Rectangle {
+                              height: parent.height
+                              color: "#b1b1b1"
+                              radius: height/2
+                          }
+
+                        
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("Format date (enum Qt::DateFormat)")                                
+                            }
+                                
+
+                        }
+                        
+                    }                        
+                        
+                                                
+                }
+    
+
+		property var settingsTypeModel: [
+            { name: i18n.tr(""), type: "" },
+			{ name: i18n.tr(""), type: "" },
+			{ name: i18n.tr(""), type: "" }
+	]
+    
+                Text {
+                    text: i18n.tr("Format Content") 
+                    width: units.gu(13)
+                    height: units.gu(4)
+                    anchors.left: parent.left
+                    anchors.leftMargin: units.gu(2)
+                    verticalAlignment: Text.AlignVCenter
+
+                        
+                    ComboBox {
+
+                        width: units.gu(20)
+                        height: units.gu(4)
+                        anchors.left: parent.right
+                        anchors.leftMargin: units.gu(2)
+                        //model: settingsRSSColumn.settingsTypeModel
+
+                        currentIndex: {
+                            
+                        }
+                        
+                        onCurrentIndexChanged: {
+                            
+                         }         
+                        
+                        //the background of the combobox
+                          background: Rectangle {
+                              height: parent.height
+                              color: "#b1b1b1"
+                              radius: height/2
+                          }
+
+                        
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("Format Content")                                
+                            }
+                                
+
+                        }
+                        
+                    }                        
+                        
+                                                
+                }
     
 
         } // column
