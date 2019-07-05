@@ -68,7 +68,7 @@ property int currentIndexList: 0
                         iconName: "settings"
                         text: "add"
                         onTriggered: {
-				RSSCore.cancel();
+				//RSSCore.cancel();
                             homeRSS.pageStack.addPageToNextColumn(homeRSS, Qt.resolvedUrl("ManageRSS.qml"))
                             root.currentIndexList = -1
                         }
@@ -125,7 +125,7 @@ property int currentIndexList: 0
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-			RSSCore.cancel();
+			//RSSCore.cancel();
                     homeRSS.pageStack.addPageToNextColumn(homeRSS, Qt.resolvedUrl("ViewRSS.qml"), {"dbid": RSSCore.feedlistZero[index].dbid, "titlePage": RSSCore.feedlistZero[index].name})
                     onClicked: root.currentIndexList = index                   
                 }
@@ -166,7 +166,7 @@ property int currentIndexList: 0
         }//page
         
         Component.onCompleted: {
-            	RSSCore.cancel();
+            	//RSSCore.cancel();
 		homeRSS.pageStack.addPageToNextColumn(homeRSS, Qt.resolvedUrl("ViewRSS.qml"), {"dbid": 0})
         }
     
