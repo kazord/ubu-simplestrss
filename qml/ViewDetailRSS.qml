@@ -35,14 +35,34 @@ Page {
     property string titleNews: ""
     property string descNews: ""
         
-        Text{
-            anchors.fill: parent
-            anchors.topMargin: viewDetailNews.header.height+units.gu(1)
-            width: parent.width
-            wrapMode:Text.WordWrap
-            text: viewDetailNews.descNews
-            color: "black"
-        }    
+   Flickable {
+        id: flickableRss
+        anchors.fill: parent
+        anchors.topMargin: viewDetailNews.header.height
+        contentHeight: detailRSSColumn.height
+        flickableDirection: Flickable.VerticalFlick
+        clip: true
+            
+        Column {
+            id: detailRSSColumn
+            spacing: units.gu(2)
+            anchors {
+                top: parent.top
+                left: parent.left
+                right: parent.right
+                leftMargin: units.gu(1)
+                rightMargin: units.gu(1)
+            }
+            
+            Text{
+                anchors.fill: parent
+                width: parent.width
+                wrapMode:Text.WordWrap
+                text: viewDetailNews.descNews
+                color: "black"
+            }   
+            
+        }//column
 
-  
+   }//flickable
 }//page
