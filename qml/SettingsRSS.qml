@@ -379,8 +379,8 @@ Page {
                             anchors.left: parent.right
                             anchors.leftMargin: units.gu(1.5)
                             anchors.verticalCenter: parent.verticalCenter
-                            width: parent.height-units.gu(1)
-                            height: parent.height-units.gu(1)
+                            width: units.gu(4)-units.gu(1)
+                            height: units.gu(4)-units.gu(1)
                             name: "help"
                                 
                             MouseArea {
@@ -406,6 +406,7 @@ Page {
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
+                        
      			Switch {
 			anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
@@ -420,8 +421,8 @@ Page {
                             anchors.left: parent.right
                             anchors.leftMargin: units.gu(1.5)
                             anchors.verticalCenter: parent.verticalCenter
-                            width: parent.height-units.gu(1)
-                            height: parent.height-units.gu(1)
+                            width: units.gu(4)-units.gu(1)
+                            height: units.gu(4)-units.gu(1)
                             name: "help"
                                 
                             MouseArea {

@@ -61,7 +61,7 @@ Page {
                     color: "transparent"
 
                     Rectangle {
-                        color: "black"
+                        color: bgcolor
                         width: units.gu(19)
                         height: units.gu(19)
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -96,7 +96,7 @@ Page {
                             width: units.gu(19)
                             height: titleMovie.contentHeight
                             color: "#000000"
-                            anchors.bottom: imgIcons.bottom
+                            anchors.bottom: parent.bottom
                             opacity: 0.8
                             radius: units.gu(2)
 
@@ -116,7 +116,6 @@ Page {
                             MouseArea {
                                 anchors.fill: parent
                                 onClicked: {
-					console.log(bgcolor)
 					//console.log(xmlNewsList.xml)
 		                     viewFeed.pageStack.addPageToNextColumn(viewFeed, Qt.resolvedUrl("ViewDetailRSS.qml"), {"urlNews": url, "titleNews": title, "descNews": longDesc});
 					}
