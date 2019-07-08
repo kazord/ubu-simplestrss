@@ -11,6 +11,7 @@ Page {
     id: manageRSS
 	clip:true
     header: state == "default" ? headerSettings : headerAddFeedSettings
+    property string searchurl: ""
     
     PageHeader {
         id: headerSettings
@@ -105,6 +106,7 @@ Page {
             trailingActionBar {
                 actions: [
                     Action {
+			id:find
                         iconName: "find"
                         onTriggered: {
 			    if(!searchField.text.startsWith("http"))
@@ -237,7 +239,12 @@ Page {
     
     
     Component.onCompleted: { 
-	console.log(RSSCore.feedlist.length)
-	console.log(RSSCore.feedlist[0].name+" "+RSSCore.feedlist[0].url)
+	if(manageRSS.searchurl != "") {
+		manageRSS.state = "add"
+		searchField.text = manageRSS.searchurl
+		find.trigger()
+	}
+	//console.log(RSSCore.feedlist.length)
+	//console.log(RSSCore.feedlist[0].name+" "+RSSCore.feedlist[0].url)
     }
 }//page

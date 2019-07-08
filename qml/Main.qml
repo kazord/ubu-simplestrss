@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.3
+import Ubuntu.Content 1.3
 import QtQuick.Window 2.2
 import RSSCore 1.0
 import QtQuick.XmlListModel 2.0
@@ -15,7 +16,23 @@ MainView {
 
     width: if(Screen.desktopAvailableWidth > units.gu(60)){units.gu(125)}else{Screen.desktopAvailableWidth+2}
     height:if(Screen.desktopAvailableHeight > units.gu(100)){units.gu(70)}else{Screen.desktopAvailableHeight}
-                
+
+
+    Connections {
+        target: ContentHub
+
+        onImportRequested: {
+		console.log("Importing: "+transfer.items[0].url)
+		RSSCore.cancel();
+		homeRSS.pageStack.addPageToNextColumn(homeRSS, Qt.resolvedUrl("ManageRSS.qml"), {"searchurl":transfer.items[0].url} )
+
+        }
+        onShareRequested: {
+		console.log("Share importing: "+transfer.items[0].url)
+		RSSCore.cancel();
+		homeRSS.pageStack.addPageToNextColumn(homeRSS, Qt.resolvedUrl("ManageRSS.qml"), {"searchurl":transfer.items[0].url})
+        }
+}  
 property int currentIndexList: 0        
 
     AdaptivePageLayout {
@@ -53,13 +70,28 @@ property int currentIndexList: 0
             contents: Rectangle {
                 anchors.fill: parent
                 color: "black"
-                Label {
+		
+                /*Label {
                     anchors.centerIn: parent
                     text: header.title
                     color: "white"
                     textSize: Label.Large
                     font.bold: true
-                }
+                }*/
+		Image {
+			anchors.centerIn: parent
+			anchors.verticalCenterOffset: units.gu(1)
+			source: "../assets/logolong-white.png"
+			height: parent.height
+			fillMode: Image.PreserveAspectFit
+			MouseArea {
+				anchors.fill: parent
+				onClicked: {
+					RSSCore.cancel();
+					homeRSS.pageStack.addPageToNextColumn(homeRSS, Qt.resolvedUrl("About.qml"))
+				}
+			}
+             	}
             }
             
             trailingActionBar {

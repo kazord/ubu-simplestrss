@@ -1,5 +1,8 @@
 {
 	"destination": [
-		"all"
+		"links"
+	],
+	"share": [
+		"links"
 	]
 }
