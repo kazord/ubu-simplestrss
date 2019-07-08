@@ -115,7 +115,11 @@ Page {
 
                             MouseArea {
                                 anchors.fill: parent
-                                onClicked:                     viewFeed.pageStack.addPageToNextColumn(viewFeed, Qt.resolvedUrl("ViewDetailRSS.qml"), {"urlNews": url, "titleNews": title, "descNews": longDesc});
+                                onClicked: {
+					console.log(bgcolor)
+					//console.log(xmlNewsList.xml)
+		                     viewFeed.pageStack.addPageToNextColumn(viewFeed, Qt.resolvedUrl("ViewDetailRSS.qml"), {"urlNews": url, "titleNews": title, "descNews": longDesc});
+					}
                                 }
                     } // Item
             }// delegate Rectangle
@@ -128,6 +132,7 @@ Page {
 	xml: ""
     query: "/entries/entry"
 
+    XmlRole { name: "bgcolor"; query: "@color/string()" }
     XmlRole { name: "title"; query: "title/string()" }
     XmlRole { name: "shortDesc"; query: "shortDesc/string()" }
     XmlRole { name: "longDesc"; query: "longDesc/string()" }

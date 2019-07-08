@@ -16,14 +16,15 @@ enum FeedInfosElements { NONE, MAIN, ITEM, LINK, AUTHOR, CATEGORY, TITLE, DESC, 
 class FeedInfos { 
 	public:
 		FeedInfos();
-		FeedInfos(int id, QString name, QString main, QString item, QString link, QString author, QString category, QString title, QString desc, QString date, QString multimedia, QString titleColor, QString faviconUrl, bool removeHTML, bool tagsDecoding, Qt::DateFormat dateFormat, QString url);
+		FeedInfos(int id, QString name, QString main, QString item, QString link, QString author, QString category, QString title, QString desc, QString date, QString multimedia, QString color, QString faviconUrl, bool removeHTML, bool tagsDecoding, Qt::DateFormat dateFormat, QString url);
 		FeedInfos(int id, QString name, QString url);
 		~FeedInfos() = default;
 		
 		bool isItem(QStringRef cmp) const;
 		bool isMain(QStringRef cmp) const;
 		FeedInfosElements usedElement(QStringRef cmp) const;
-		QString getTitleColor() const;
+		QString getColor() const;
+		int getDateFormat() const;
 		bool doTagsDecoding() const;
 		bool doRemoveHTML() const;
 		bool doNothing() const;
@@ -51,7 +52,7 @@ class FeedInfos {
 		QString _desc;
 		QString _date;
 		QString _multimedia;
-		QString _titleColor;
+		QString _color;
 		bool _removeHTML;
 		bool _tagsDecoding;
 		Qt::DateFormat _dateFormat;	

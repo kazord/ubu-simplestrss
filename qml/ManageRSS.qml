@@ -107,6 +107,8 @@ Page {
                     Action {
                         iconName: "find"
                         onTriggered: {
+			    if(!searchField.text.startsWith("http"))
+				searchField.text = "http://"+searchField.text
                             console.log("searching feed"+searchField.text)
                             var result=RSSCore.searchFeed(searchField.text)
                             if(result == "Unknow"){

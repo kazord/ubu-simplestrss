@@ -11,7 +11,10 @@ class Feed: public QObject {
 	Q_PROPERTY( QString url READ url CONSTANT)
 	Q_PROPERTY( int dbid READ dbid CONSTANT)
 	Q_PROPERTY( QString faviconUrl READ faviconUrl CONSTANT)
-	Q_PROPERTY( QString titleColor READ color CONSTANT)
+	Q_PROPERTY( QString color READ color CONSTANT)
+	Q_PROPERTY( bool removeHTML READ doRemoveHTML CONSTANT)
+	Q_PROPERTY( bool tagsDecoding READ doTagsDecoding CONSTANT)
+	Q_PROPERTY( int dateFormat READ getDateFormat CONSTANT)
 
 
 	public:
@@ -23,6 +26,9 @@ class Feed: public QObject {
 		int dbid() const;
 		QString faviconUrl() const;
 		QString color() const;
+		bool doTagsDecoding() const;
+		bool doRemoveHTML() const;
+		int getDateFormat() const;
 		Q_INVOKABLE QString getProp(QString key) const;
 
 	protected:

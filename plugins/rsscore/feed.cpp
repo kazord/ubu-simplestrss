@@ -13,7 +13,16 @@ QString Feed::faviconUrl() const {
 	return _infos.getFavicon();
 }
 QString Feed::color() const {
-	return _infos.getTitleColor();
+	return _infos.getColor();
+}
+bool Feed::doTagsDecoding() const {
+	return _infos.doTagsDecoding();
+}
+bool Feed::doRemoveHTML() const {
+	return _infos.doRemoveHTML();
+}
+int Feed::getDateFormat() const {
+	return _infos.getDateFormat();
 }
 QString Feed::getProp(QString key) const {
 	return _infos.getProp(key);

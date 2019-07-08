@@ -107,7 +107,7 @@ bool DB::addFeed(const FeedInfos &info) {
 	q.addBindValue(info._desc);
 	q.addBindValue(info._date);
 	q.addBindValue(info._multimedia);
-	q.addBindValue(info._titleColor);
+	q.addBindValue(info._color);
 	q.addBindValue(info._dateFormat);
 	q.addBindValue((info._removeHTML));
 	q.addBindValue((info._tagsDecoding));
@@ -135,7 +135,7 @@ bool DB::updateFeed(int id, const FeedInfos &newinfos) {
 	q.addBindValue(newinfos._desc);
 	q.addBindValue(newinfos._date);
 	q.addBindValue(newinfos._multimedia);
-	q.addBindValue(newinfos._titleColor);
+	q.addBindValue(newinfos._color);
 	q.addBindValue(newinfos._dateFormat);
 	q.addBindValue(newinfos._removeHTML);
 	q.addBindValue(newinfos._tagsDecoding);
@@ -208,7 +208,7 @@ QQueue<FeedInfos>  DB::feeds() {
 		f._desc = q.value(8).toString();
 		f._date = q.value(9).toString();
 		f._multimedia = q.value(10).toString();
-		f._titleColor = q.value(11).toString();
+		f._color = q.value(11).toString();
 		f._dateFormat = (Qt::DateFormat) q.value(12).toInt();
 		f._removeHTML = q.value(13).toBool();
 		f._tagsDecoding = q.value(14).toBool();
@@ -243,7 +243,7 @@ FeedInfos DB::feed(const int id) {
 		f._desc = q.value(8).toString();
 		f._date = q.value(9).toString();
 		f._multimedia = q.value(10).toString();
-		f._titleColor = q.value(11).toString();
+		f._color = q.value(11).toString();
 		f._dateFormat = (Qt::DateFormat) q.value(12).toInt();
 		f._removeHTML = q.value(13).toBool();
 		f._tagsDecoding = q.value(14).toBool();

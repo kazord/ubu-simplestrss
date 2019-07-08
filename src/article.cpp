@@ -1,4 +1,5 @@
 #include <QString>
+#include <QRegularExpression>
 
 #include "article.h"
 
@@ -8,6 +9,11 @@ Article::Article(int id) {
 Article::Article(QString favIcon, int id) {
 	_iconUri = favIcon;
 	_id = id;
+}
+Article::Article(QString favIcon, QXmlStreamAttributes attr, int id) {
+	_iconUri = favIcon;
+	_id = id;
+	_xml_attr = attr;
 }
 void Article::setLink(QString link) {
 	_link = link;
@@ -44,8 +50,12 @@ qint64 Article::getNumDate() const {
 }
 void Article::writeXmlStream(QXmlStreamWriter& stream) const {
 	stream.writeStartElement("entry");
+	stream.writeAttributes(_xml_attr);
 	stream.writeTextElement("title", _title);
-	stream.writeTextElement("shortDesc", _desc);
+	if(_desc.length() > 300)
+		stream.writeTextElement("shortDesc", _desc.left(297).replace(QRegularExpression("<[^>]+$"),"") + "...");
+	else
+		stream.writeTextElement("shortDesc", _desc);
 	stream.writeTextElement("longDesc", _desc);
 	stream.writeTextElement("url", _link);
 	stream.writeTextElement("iconUri", _iconUri);

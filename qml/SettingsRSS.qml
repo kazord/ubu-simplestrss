@@ -68,6 +68,9 @@ Page {
 	settingsRSS.feed = RSSCore.getDBFeed(settingsRSS.dbid)
 	possibleNode = RSSCore.getAutodetectValues(dbid)
 	comboboxitem.currentIndex = possibleNode.indexOf(settingsRSS.feed.getProp("main")+">"+settingsRSS.feed.getProp("item"))
+	comboboxdateformat.dateindex = feed.dateFormat;	
+	switchCleanHTML.checked = feed.removeHTML;
+	switchTagsDecoding.checked = feed.tagsDecoding;
 	possibleNodeChanged()
 	}
 
@@ -108,7 +111,7 @@ Page {
                         height: units.gu(4)
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
-                        text: RSSCore.getDBFeed(settingsRSS.dbid).titleColor
+                        text: RSSCore.getDBFeed(settingsRSS.dbid).color
                         onTextChanged: RSSCore.updateDBFeed(settingsRSS.dbid, "color", text)
 
                         Icon {
@@ -221,7 +224,7 @@ Page {
    
     
                     ComboBox {
-			             id:comboboxtitle
+			id:comboboxtitle
                         //model: settingsRSSColumn.comboboxPossibleSubNode
                         model: settingsRSS.possibleSubNode
                         width: units.gu(20)
@@ -289,23 +292,40 @@ Page {
                         
                         
                     ComboBox {
-
+			id: comboboxdateformat
+			property int dateindex: 0;
                         width: units.gu(20)
                         height: units.gu(4)
                         anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
                         model: [ "ISO", "RFC", "TXT" ]
-                        currentIndex: {
-                            if(RSSCore.getDBFeed(settingsRSS.dbid).getProp("date_format") == 0){2}
-                            if(RSSCore.getDBFeed(settingsRSS.dbid).getProp("date_format") == 1){0}
-                            if(RSSCore.getDBFeed(settingsRSS.dbid).getProp("date_format") == 8){1}                                
-                        }
+                        currentIndex: 2
                         
                         onCurrentIndexChanged: {
-                            if(currentIndex == 0){RSSCore.updateDBFeedINT(settingsRSS.dbid, "date_format", 1)}
-                            if(currentIndex == 1){RSSCore.updateDBFeedINT(settingsRSS.dbid, "date_format", 8)}
-                            if(currentIndex == 2){RSSCore.updateDBFeedINT(settingsRSS.dbid, "date_format", 0)} 
+				if(!settingsRSS.feed) return;
+				if(currentIndex == 0){
+					RSSCore.updateDBFeedInt(settingsRSS.dbid, "date_format", 1)
+					dateindex = 1
+				}
+				if(currentIndex == 1){
+					RSSCore.updateDBFeedInt(settingsRSS.dbid, "date_format", 8)
+					dateindex = 8
+				}
+				if(currentIndex == 2){
+					RSSCore.updateDBFeedInt(settingsRSS.dbid, "date_format", 0)
+					dateindex = 0
+				} 
                          }         
+			onDateindexChanged: {
+				if(dateindex == 0)
+					currentIndex = 2
+				else if(dateindex == 1)
+					currentIndex = 0
+				else if(dateindex == 8)
+					currentIndex = 1
+				else
+					currentIndex = 0
+			}
                         
                         //the background of the combobox
                           background: Rectangle {
@@ -329,7 +349,7 @@ Page {
                                 
                                 ToolTip.delay: 1000
                                 ToolTip.timeout: 5000
-                                ToolTip.text: i18n.tr("Format date (enum Qt::DateFormat)")                                
+                                ToolTip.text: i18n.tr("Date format to parse")                                
                             }
                                 
 
@@ -339,46 +359,21 @@ Page {
                         
                                                 
                 }
-    
-
-		property var settingsTypeModel: [
-            { name: i18n.tr(""), type: "" },
-			{ name: i18n.tr(""), type: "" },
-			{ name: i18n.tr(""), type: "" }
-	]
-    
-                Text {
-                    text: i18n.tr("Format Content") 
-                    width: units.gu(13)
+   		Text { 
+                	text: i18n.tr("Content: cleanup HTML") 
+                    width: units.gu(30)
                     height: units.gu(4)
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
-
-                        
-                    ComboBox {
-
-                        width: units.gu(20)
-                        height: units.gu(4)
-                        anchors.left: parent.right
+     			Switch {
+			anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
-                        //model: settingsRSSColumn.settingsTypeModel
-
-                        currentIndex: {
-                            
-                        }
-                        
-                        onCurrentIndexChanged: {
-                            
-                         }         
-                        
-                        //the background of the combobox
-                          background: Rectangle {
-                              height: parent.height
-                              color: "#b1b1b1"
-                              radius: height/2
-                          }
-
+                        	id:switchCleanHTML;
+				checked:false
+			onCheckedChanged: {
+					RSSCore.updateDBFeedInt(settingsRSS.dbid, "cleanHTML", checked)
+			}	
                         
                         Icon {
                             anchors.left: parent.right
@@ -394,16 +389,58 @@ Page {
                                 
                                 ToolTip.delay: 1000
                                 ToolTip.timeout: 5000
-                                ToolTip.text: i18n.tr("Format Content")                                
+                                ToolTip.text: i18n.tr("Remove all HTML elements")                                
                             }
                                 
 
                         }
                         
-                    }                        
+                       }                    
                         
                                                 
                 }
+		Text { 
+                	text: i18n.tr("Content: decode special charachers") 
+                    width: units.gu(30)
+                    height: units.gu(4)
+                    anchors.left: parent.left
+                    anchors.leftMargin: units.gu(2)
+                    verticalAlignment: Text.AlignVCenter
+     			Switch {
+			anchors.left: parent.right
+                        anchors.leftMargin: units.gu(2)
+                        	id:switchTagsDecoding;
+				checked:false
+			
+			onCheckedChanged: {
+					RSSCore.updateDBFeedInt(settingsRSS.dbid, "tagsRemove", checked)
+			}	
+                        
+                        Icon {
+                            anchors.left: parent.right
+                            anchors.leftMargin: units.gu(1.5)
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.height-units.gu(1)
+                            height: parent.height-units.gu(1)
+                            name: "help"
+                                
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: ToolTip.visible = true
+                                
+                                ToolTip.delay: 1000
+                                ToolTip.timeout: 5000
+                                ToolTip.text: i18n.tr("Convert &xxx; into readable characters")                                
+                            }
+                                
+
+                        }
+                        
+                                           
+                       } 
+                                                
+                }
+		
     
 
         } // column

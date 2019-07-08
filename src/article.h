@@ -8,6 +8,7 @@ class Article {
 	public:
 		Article(int id = 0);
 		Article(QString favIcon, int id = 0);
+		Article(QString favIcon, QXmlStreamAttributes attr, int id = 0);
 		~Article() = default;
 	
 		void setLink(QString link);
@@ -33,6 +34,7 @@ class Article {
 		QString _media;
 		QString _iconUri;
 		qint64 _numDate;
+		QXmlStreamAttributes _xml_attr;
 
 };
 

@@ -36,6 +36,9 @@ bool RSSCore::updateDBFeed(int dbid, QString key, QString value) {
 bool RSSCore::updateDBFeedInt(int dbid, QString key, int value) {
 	return DB::instance()->updateFeed(dbid, key, value);
 }
+bool RSSCore::updateDBFeedBool(int dbid, QString key, bool value) {
+	return DB::instance()->updateFeed(dbid, key, value);
+}
 bool RSSCore::updateDBAutoFeed(int dbid) {
 	FeedInfos fi2 = DB::instance()->feed(dbid);
 	QString url = fi2.getUrl();

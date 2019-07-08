@@ -26,6 +26,7 @@ Web::Web() {
 	//QNetworkDiskCache *diskCache = new QNetworkDiskCache(this);
 	//diskCache->setCacheDirectory(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
 	//_manager->setCache(diskCache);
+	_reply = nullptr;
 
 }
 
@@ -74,6 +75,7 @@ QString Web::get_source_url_from_feedly(QUrl src_url, QString redirected_url) {
 }
 void Web::cancel() {
 	qDebug() << "web request cancelled";
+	qDebug() << _reply;
 	if(_reply != nullptr) {
 		_reply->abort();
 		emit cancelled();

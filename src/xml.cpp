@@ -218,16 +218,16 @@ namespace XML {
 		return desc;
 	}
 	QString fastHTMLDecode(QString desc) {
-		QRegExp rx1("&#x(..);");
+		QRegExp rx1("&#x([a-fA-F0-9]{1,4});");
 		int pos = 0;
 		bool ok;
 		while ((pos = rx1.indexIn(desc,pos)) != -1) {
-			desc.replace(pos, 6, QChar(rx1.cap(1).toInt(&ok,16)));
+			desc.replace(pos, rx1.cap(1).size()+4, QChar(rx1.cap(1).toInt(&ok,16)));
 		}
-		QRegExp rx2("&#\d{1,4};");
+		QRegExp rx2("&#([0-9]{1,4});");
 		pos = 0;
 		while ((pos = rx2.indexIn(desc,pos)) != -1) {
-			desc.replace(pos, 6, QChar(rx2.cap(1).toInt(&ok,10)));
+			desc.replace(pos, rx2.cap(1).size()+3, QChar(rx2.cap(1).toInt(&ok,10)));
 		}
 		desc.replace(QString("&amp;"), QString("&"));
 		desc.replace(QString("&apos;"), QString("'"));
@@ -338,7 +338,8 @@ namespace XML {
 							}
 						case FeedInfosElements::TITLE:
 							{
-								article.updateTitle("<font color='"+param.getTitleColor()+"'>"+readText(xml).replace("&","&amp;")+"</font>");
+								//article.updateTitle("<font color='"+param.getTitleColor()+"'>"+readText(xml).replace("&","&amp;")+"</font>");
+								article.updateTitle(readText(xml).replace("&","&amp;"));
 								break;	
 							}
 						case FeedInfosElements::DESC:
@@ -411,7 +412,9 @@ namespace XML {
 			{
 				if(xml.isStartElement()) {
 					if (param.isItem(xml.name())) {
-						Article article(param.getFavicon(), parsed.size());
+						QXmlStreamAttributes attr;
+						attr.append("color", param.getColor());
+						Article article(param.getFavicon(), attr, parsed.size());
 						parseArticle(param, article, xml);
 						parsed << article;
 					}
