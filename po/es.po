@@ -19,140 +19,139 @@ msgstr ""
 
 #: ../qml/ManageRSS.qml:17
 msgid "RSS management"
-msgstr ""
+msgstr "Gestor SRS"
 
 #: ../qml/ManageRSS.qml:34 ../qml/PreviewRSS.qml:31
 msgid "Add RSS"
-msgstr ""
+msgstr "Agregar SRS"
 
 #: ../qml/ManageRSS.qml:47
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 #: ../qml/ManageRSS.qml:52
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 #: ../qml/ManageRSS.qml:71
 msgid "Enter URL of feed"
-msgstr ""
+msgstr "Escribir LUR "
 
 #: ../qml/Main.qml:45 ../qml/build/tmp/Main.qml:20 simplestrss.desktop.in.h:1
 msgid "SimplestRSS"
-msgstr ""
+msgstr "SimplestRSS"
 
 #: ../qml/ViewDetailRSSWebview.qml:11
 msgid "View site"
-msgstr ""
+msgstr "Ver sitio"
 
 #: ../qml/ViewDetailRSS.qml:12
 msgid "Detail article"
-msgstr ""
+msgstr "Artículo detallado"
 
 #: ../qml/ViewDetailRSS.qml:18
 msgid "Attempt to recover content"
-msgstr ""
+msgstr "Intenta rescatar el contenido"
 
 #: ../qml/PreviewRSS.qml:15
 msgid "Feed preview"
-msgstr ""
+msgstr "Vista previa del alimentador"
 
 #: ../qml/SettingsRSS.qml:46
 msgid "RSS settings"
-msgstr ""
+msgstr "Ajustes de SRS"
 
 #: ../qml/SettingsRSS.qml:101
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 #: ../qml/SettingsRSS.qml:131
 msgid "Color of feed (ex: #B1B1B1 OR grey)"
-msgstr ""
+msgstr "Color del alimentador (ex: #B1B1B1 OR gris)"
 
 #: ../qml/SettingsRSS.qml:143
 msgid "Item"
-msgstr ""
+msgstr "Artículo"
 
 #: ../qml/SettingsRSS.qml:185
 msgid "Container for one article inside the feed"
-msgstr ""
+msgstr "Contenedor para un artículo dentro del alimentador."
 
 #: ../qml/SettingsRSS.qml:197
 msgid "Link"
-msgstr ""
+msgstr "Enlace"
 
 #: ../qml/SettingsRSS.qml:197
 msgid "Url of the article"
-msgstr ""
+msgstr "LUR del artículo"
 
 #: ../qml/SettingsRSS.qml:198
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: ../qml/SettingsRSS.qml:198
 msgid "Should contains the source/writer"
-msgstr ""
+msgstr "Debe contener la fuente/escritor"
 
 #: ../qml/SettingsRSS.qml:199
 msgid "Category"
-msgstr ""
+msgstr "Categoría"
 
 #: ../qml/SettingsRSS.qml:199
 msgid "For filtering"
-msgstr ""
+msgstr "Para filtrar"
 
 #: ../qml/SettingsRSS.qml:200
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: ../qml/SettingsRSS.qml:200
 msgid "Title of article"
-msgstr ""
+msgstr "Título del artículo"
 
 #: ../qml/SettingsRSS.qml:201
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #: ../qml/SettingsRSS.qml:201
 msgid "Description of the article"
-msgstr ""
+msgstr "Descripción del artículo."
 
 #: ../qml/SettingsRSS.qml:202
 msgid "Media"
-msgstr ""
+msgstr "multimedia"
 
 #: ../qml/SettingsRSS.qml:202
 msgid "Image for article"
-msgstr ""
+msgstr "Imagen para articulo"
 
 #: ../qml/SettingsRSS.qml:203
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 #: ../qml/SettingsRSS.qml:203
 msgid "Don't forget to select the right date format, it's needed ordering"
-msgstr ""
+msgstr "No olvidar de elegir el formato de fecha correcto. Se necesita ordenar"
 
 #: ../qml/SettingsRSS.qml:286
 msgid "Format date"
-msgstr ""
+msgstr "Fecha de formato"
 
 #: ../qml/SettingsRSS.qml:352
 msgid "Date format to parse"
-msgstr ""
+msgstr "Formato de fecha para analizar"
 
 #: ../qml/SettingsRSS.qml:363
 msgid "Content: cleanup HTML"
-msgstr ""
-
+msgstr "Contenido: limpiar HTML"
 #: ../qml/SettingsRSS.qml:392
 msgid "Remove all HTML elements"
-msgstr ""
+msgstr "Eliminar todos los elementos HTML"
 
 #: ../qml/SettingsRSS.qml:403
 msgid "Content: decode special charachers"
-msgstr ""
+msgstr "Contenido: descifrar caracteres especiales"
 
 #: ../qml/SettingsRSS.qml:434
 msgid "Convert &xxx; into readable characters"
-msgstr ""
+msgstr "Convertir &xxx; en caracteres leíbles"
