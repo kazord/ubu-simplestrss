@@ -1,0 +1,157 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the simplestrss.kazord package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: simplestrss.kazord\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-08 19:00+0000\n"
+"PO-Revision-Date: 2019-07-12 19:10+0000\n"
+"Last-Translator: Anne017 <anneonyme017@openmailbox.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../qml/ManageRSS.qml:17
+msgid "RSS management"
+msgstr "Gestion des flux RSS"
+
+#: ../qml/ManageRSS.qml:34 ../qml/PreviewRSS.qml:31
+msgid "Add RSS"
+msgstr "Ajouter un flux"
+
+#: ../qml/ManageRSS.qml:47
+msgid "Search"
+msgstr "Rechercher"
+
+#: ../qml/ManageRSS.qml:52
+msgid "Close"
+msgstr "Fermer"
+
+#: ../qml/ManageRSS.qml:71
+msgid "Enter URL of feed"
+msgstr "Saisissez le lien d'un flux"
+
+#: ../qml/Main.qml:45 ../qml/build/tmp/Main.qml:20 simplestrss.desktop.in.h:1
+msgid "SimplestRSS"
+msgstr "Simplest RSS"
+
+#: ../qml/ViewDetailRSSWebview.qml:11
+msgid "View site"
+msgstr "Afficher le site"
+
+#: ../qml/ViewDetailRSS.qml:12
+msgid "Detail article"
+msgstr "Article détailé"
+
+#: ../qml/ViewDetailRSS.qml:18
+msgid "Attempt to recover content"
+msgstr "Tentative de récupération du contenu"
+
+#: ../qml/PreviewRSS.qml:15
+msgid "Feed preview"
+msgstr "Aperçu du flux"
+
+#: ../qml/SettingsRSS.qml:46
+msgid "RSS settings"
+msgstr "Paramètres"
+
+#: ../qml/SettingsRSS.qml:101
+msgid "Color"
+msgstr "Couleur"
+
+#: ../qml/SettingsRSS.qml:131
+msgid "Color of feed (ex: #B1B1B1 OR grey)"
+msgstr "Couleur du flux (ex : #B1B1B1 OU gris)"
+
+#: ../qml/SettingsRSS.qml:143
+msgid "Item"
+msgstr "Élément"
+
+#: ../qml/SettingsRSS.qml:185
+msgid "Container for one article inside the feed"
+msgstr "Conteneur pour un article dans le flux"
+
+#: ../qml/SettingsRSS.qml:197
+msgid "Link"
+msgstr "Lien"
+
+#: ../qml/SettingsRSS.qml:197
+msgid "Url of the article"
+msgstr "Lien de l'article"
+
+#: ../qml/SettingsRSS.qml:198
+msgid "Author"
+msgstr "Auteur/trice"
+
+#: ../qml/SettingsRSS.qml:198
+msgid "Should contains the source/writer"
+msgstr "Doit contenir la source"
+
+#: ../qml/SettingsRSS.qml:199
+msgid "Category"
+msgstr "Catégorie"
+
+#: ../qml/SettingsRSS.qml:199
+msgid "For filtering"
+msgstr "Pour filtrage"
+
+#: ../qml/SettingsRSS.qml:200
+msgid "Title"
+msgstr "Titre"
+
+#: ../qml/SettingsRSS.qml:200
+msgid "Title of article"
+msgstr "Titre de l'article"
+
+#: ../qml/SettingsRSS.qml:201
+msgid "Description"
+msgstr "Description"
+
+#: ../qml/SettingsRSS.qml:201
+msgid "Description of the article"
+msgstr "Description de l'article"
+
+#: ../qml/SettingsRSS.qml:202
+msgid "Media"
+msgstr "Média"
+
+#: ../qml/SettingsRSS.qml:202
+msgid "Image for article"
+msgstr "Image de l'article"
+
+#: ../qml/SettingsRSS.qml:203
+msgid "Date"
+msgstr "Date"
+
+#: ../qml/SettingsRSS.qml:203
+msgid "Don't forget to select the right date format, it's needed ordering"
+msgstr "N'ouliez pas de sélectionner le bon format de date, nécessaire pour le tri"
+
+#: ../qml/SettingsRSS.qml:286
+msgid "Format date"
+msgstr "Format de la date"
+
+#: ../qml/SettingsRSS.qml:352
+msgid "Date format to parse"
+msgstr "Format de la date à analyser"
+
+#: ../qml/SettingsRSS.qml:363
+msgid "Content: cleanup HTML"
+msgstr "Contenu : HTML nettoyé"
+
+#: ../qml/SettingsRSS.qml:392
+msgid "Remove all HTML elements"
+msgstr "Supprime tous les éléments HTML"
+
+#: ../qml/SettingsRSS.qml:403
+msgid "Content: decode special charachers"
+msgstr "Contenu : décoder les caractères spéciaux"
+
+#: ../qml/SettingsRSS.qml:434
+msgid "Convert &xxx; into readable characters"
+msgstr "Convertir &xxx; en caractères lisibles"
