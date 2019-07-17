@@ -72,6 +72,9 @@ Page {
 	switchCleanHTML.checked = feed.removeHTML;
 	switchTagsDecoding.checked = feed.tagsDecoding;
 	possibleNodeChanged()
+	settingsRSSLoading.z = -1
+	settingsRSSLoading.opacity = 0
+
 	}
 
 
@@ -84,7 +87,21 @@ Page {
         contentHeight: settingsRSSColumn.height+units.gu(2)
         flickableDirection: Flickable.VerticalFlick
         clip: true
-
+	
+	Rectangle {
+		z:1
+		id:settingsRSSLoading
+		color: "white"
+		anchors.fill: parent
+		Label {
+			text:"Loading..."	
+			anchors.centerIn: parent
+			textSize:Label.Large
+		}
+		MouseArea {
+			anchors.fill: parent
+		}
+	}
 
         Column {
             id: settingsRSSColumn

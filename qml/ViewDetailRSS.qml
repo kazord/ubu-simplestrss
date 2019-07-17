@@ -15,14 +15,17 @@ Page {
                 actions: [
                     Action {
                         iconName: "stock_website"
+                        text: i18n.tr("Open in browser")
+                        onTriggered: {     
+                    		Qt.openUrlExternally(urlNews);
+                    }
+		},
+		    Action {
+                        iconName: "save-to"
                         text: i18n.tr("Attempt to recover content")
                         onTriggered: {     
-                    Qt.openUrlExternally(urlNews);
-			var fulltext = RSSCore.fetchFullArticle(urlNews, "auto", descNews)
-			if(fulltext != "") descNews = fulltext
-                    //viewDetailNews.pageStack.addPageToCurrentColumn(viewDetailNews, Qt.resolvedUrl("ViewDetailRSSWebview.qml"), {"urlNews": urlNews, "titleNews": viewDetailNews.titleNews, "descNews": viewDetailNews.descNews}); 
-                    
-                    
+				var fulltext = RSSCore.fetchFullArticle(urlNews, "auto", descNews)
+				if(fulltext != "") descNews = fulltext
                             }
                     }
                ]

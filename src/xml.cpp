@@ -28,15 +28,15 @@ namespace XML {
 		QString readContent(QXmlStreamReader& xml)
 		{
 			QString content = "";
-			QStringRef target = xml.name();
+			QStringRef target = xml.qualifiedName();
 			xml.readNext();
-			while (!xml.atEnd() && !(xml.isEndElement() && xml.name() == target))
+			while (!xml.atEnd() && !(xml.isEndElement() && xml.qualifiedName() == target))
 			{
 
 				if (xml.isStartElement())
-					content.append("<"+xml.name().toString()+">");
+					content.append("<"+xml.qualifiedName().toString()+">");
 				else if (xml.isEndElement())
-					content.append("</"+xml.name().toString()+">");
+					content.append("</"+xml.qualifiedName().toString()+">");
 				else if(xml.tokenType() == QXmlStreamReader::Characters)
 					content.append(xml.text().toString());
 
@@ -48,10 +48,10 @@ namespace XML {
 		}
 		QStringList subFoundChannel(QXmlStreamReader &xml, QString parent, QString ignore) {
 			QStringList list;
-			while (!xml.atEnd() && !(xml.isEndElement() && xml.name().toString() == parent))
+			while (!xml.atEnd() && !(xml.isEndElement() && xml.qualifiedName().toString() == parent))
 			{
 				if (xml.isStartElement() && !xml.name().toString().isEmpty()) {
-					if(xml.name().toString() == ignore) {
+					if(xml.qualifiedName().toString() == ignore) {
 						subFoundChannel(xml, ignore, "");//ignore entry zone
 					}
 					else if(xml.name().toString() == "title") {
@@ -65,11 +65,11 @@ namespace XML {
 		}
 
 		void parse4Analyse(QXmlStreamReader &xml, AutodetectInfos &info, QString parentName) {
-			AutodetectNode node(xml.name().toString(), parentName);	
-			qDebug() << "~" << xml.name().toString() << "~";
+			AutodetectNode node(xml.qualifiedName().toString(), parentName);	
+			//qDebug() << "~" << xml.qualifiedName().toString() << "~";
 			info.updateKnownNode(node);
 			bool next = true;
-			QString name(xml.name().toString());
+			QString name(xml.qualifiedName().toString());
 			if(name == "channel" 
 					|| name == "feed") {
 			}
@@ -84,13 +84,13 @@ namespace XML {
 			if(name == "description"
 					|| name == "subtitle"
 					|| name == "summary"
-					|| name == "encoded" //wordpress default fullmode (content:encoded parsed as encoded)
+					|| name == "content:encoded" //wordpress default fullmode (content:encoded parsed as encoded)
 					|| name == "content") {
 				info.updateDesc(node);
 				QString content = readContent(xml);
 				next = false;
 				if(content.isEmpty()) { //this is a trap description, *ignore it*
-					qDebug() << "description with :" << name;
+					//qDebug() << "description with :" << name;
 					return;
 				}
 				QRegExp rx("&[a-zA-Z]{2,4};"); //looking for encoded html
@@ -99,7 +99,7 @@ namespace XML {
 				}
 			}
 			if(
-					name == "content" //wordpress default image (media:content parsed as content)
+					name == "media:content" //wordpress default image (media:content parsed as content)
 					|| name == "media"
 					|| name == "image"
 					|| name == "enclosure")
@@ -126,15 +126,16 @@ namespace XML {
 			}
 			if(name == "author"
 					|| name == "contributor"
+					|| name == "dc:creator"
 					|| name == "creator") {
 				info.updateAuthor(node);
 			}
 			if(next)
 				xml.readNext();
-			while (!xml.atEnd() && !(xml.isEndElement() && xml.name() == node.first))
+			while (!xml.atEnd() && !(xml.isEndElement() && xml.qualifiedName() == node.first))
 			{
-				//qDebug() << xml.name() << xml.isStartElement() << xml.isEndElement();
-				if (xml.isStartElement() && !xml.isEndElement() && !xml.name().toString().isEmpty()) {
+				//qDebug() << xml.name() << xml.isStartElement() << xml.isEndElement() << xml.qualifiedName();
+				if (xml.isStartElement() && !xml.isEndElement() && !xml.qualifiedName().toString().isEmpty()) {
 					parse4Analyse(xml, info, node.first);
 				}
 				else
@@ -180,7 +181,7 @@ namespace XML {
 
 			/* If token is StartElement, we'll see if we can read it.*/
 			if (token == QXmlStreamReader::StartElement) {
-				if(reader.name().toString() == parent) {
+				if(reader.qualifiedName().toString() == parent) {
 					list  << subFoundChannel(reader, parent, localname);
 				}
 			}
@@ -314,12 +315,11 @@ namespace XML {
 		void parseArticle(const FeedInfos& param, Article& article, QXmlStreamReader& xml)
 		{
 
-			while (!xml.atEnd() && !(xml.isEndElement() && param.isItem(xml.name())))
+			while (!xml.atEnd() && !(xml.isEndElement() && param.isItem(xml.qualifiedName())))
 			{
 				bool readnext = true;
 				if(xml.isStartElement()) {
-					//qDebug() << xml.name();
-					switch (param.usedElement(xml.name())) {
+					switch (param.usedElement(xml.qualifiedName())) {
 						case FeedInfosElements::LINK:
 							{
 								QXmlStreamAttributes attributes = xml.attributes();
@@ -345,13 +345,6 @@ namespace XML {
 						case FeedInfosElements::DESC:
 							{
 								QString desc = readContent(xml);
-								//readnext = false;
-								if(param.doTagsDecoding())
-									desc = fastHTMLDecode(desc);
-								if(param.doRemoveHTML())
-									desc = cleanHTML(desc);
-								if(param.doNothing())
-									desc.replace("&","&amp;");
 								article.updateDescription(desc);
 								break;
 							}
@@ -378,7 +371,6 @@ namespace XML {
 								break;
 							}
 						default:
-							//qDebug() << xml.name();
 							xml.readElementText(QXmlStreamReader::IncludeChildElements);
 							break;
 					}
@@ -389,18 +381,27 @@ namespace XML {
 			}//loop
 			//TODO use something else to fetch full article.readability = (param.html == feed::HTML::ReadabilityOnOpen);
 			//do an article config & copy as it article.icon = param.favicon();
+
 			if(article.getMedia() == "") {
-				QRegExp rx("^\s*<img src=\"([^\"]+)\"( [a-z]+=\"([^\"]+)\")* ?/?>\s*$");
+				QRegExp rx("<img [^>]*src=\"([^\"]+)\"");
 				rx.setCaseSensitivity(Qt::CaseInsensitive);
+				rx.setMinimal(true);
 				int pos = rx.indexIn(article.getDescription());
 				//cerr << "#" << article.description <<"#"<< pos << endl;
 				if (pos > -1) {
 					article.setMedia(rx.cap(1));
-					article.updateDescription(rx.cap(3));
+					//article.updateDescription(rx.cap(1)+" "+rx.cap(4));
 				}
 				else
 					article.setMedia(param.getFavicon());
 			}
+			if(param.doTagsDecoding())
+				article.updateDescription(fastHTMLDecode(article.getDescription()));
+			if(param.doRemoveHTML())
+				article.updateDescription(cleanHTML(article.getDescription()));
+			if(param.doNothing())
+				article.updateDescription(article.getDescription().replace("&","&amp;"));
+
 		}
 
 		bool parseRSS(const FeedInfos& param, QList<Article>& articles, QXmlStreamReader& xml)
@@ -408,10 +409,10 @@ namespace XML {
 
 			QList<Article> parsed;
 
-			while (!xml.atEnd() && !(xml.isEndElement() && param.isMain(xml.name())) && parsed.size() <= config::articles_limit)
+			while (!xml.atEnd() && !(xml.isEndElement() && param.isMain(xml.qualifiedName())) && parsed.size() <= config::articles_limit)
 			{
 				if(xml.isStartElement()) {
-					if (param.isItem(xml.name())) {
+					if (param.isItem(xml.qualifiedName())) {
 						QXmlStreamAttributes attr;
 						attr.append("color", param.getColor());
 						Article article(param.getFavicon(), attr, parsed.size());
@@ -445,7 +446,7 @@ namespace XML {
 
 			/* If token is StartElement, we'll see if we can read it.*/
 			if (token == QXmlStreamReader::StartElement) {
-				if (param.isMain(XMLroot.name())) {
+				if (param.isMain(XMLroot.qualifiedName())) {
 					if(parseRSS(param, result, XMLroot))
 						break;
 				}
