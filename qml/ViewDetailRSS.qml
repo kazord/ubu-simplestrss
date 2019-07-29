@@ -60,6 +60,7 @@ Page {
             Text{
                 width: parent.width
                 wrapMode:Text.WordWrap
+		horizontalAlignment:Text.AlignJustify
                 text: viewDetailNews.descNews
                 color: "black"
             }   

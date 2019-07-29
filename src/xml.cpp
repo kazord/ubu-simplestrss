@@ -213,6 +213,9 @@ namespace XML {
 
 	/************************** articles utils ******************/
 	QString cleanHTML(QString desc) {
+		QRegExp rx2 = QRegExp("<p( [^>]+)?>");
+		rx2.setMinimal(true);
+		desc.replace(rx2, "\n");
 		QRegExp rx = QRegExp("<[^>]+>");
 		rx.setMinimal(true);
 		desc.replace(rx, "");
