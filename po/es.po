@@ -35,7 +35,7 @@ msgstr "Cerrar"
 
 #: ../qml/ManageRSS.qml:71
 msgid "Enter URL of feed"
-msgstr "Escribir dirección "
+msgstr "Escribir dirección"
 
 #: ../qml/Main.qml:45 ../qml/build/tmp/Main.qml:20 simplestrss.desktop.in.h:1
 msgid "SimplestRSS"
