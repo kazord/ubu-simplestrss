@@ -35,7 +35,7 @@ msgstr "Cerrar"
 
 #: ../qml/ManageRSS.qml:71
 msgid "Enter URL of feed"
-msgstr "Escribir LUR "
+msgstr "Escribir dirección "
 
 #: ../qml/Main.qml:45 ../qml/build/tmp/Main.qml:20 simplestrss.desktop.in.h:1
 msgid "SimplestRSS"
@@ -55,7 +55,7 @@ msgstr "Intenta rescatar el contenido"
 
 #: ../qml/PreviewRSS.qml:15
 msgid "Feed preview"
-msgstr "Vista previa del alimentador"
+msgstr "Vista previa de la fuente"
 
 #: ../qml/SettingsRSS.qml:46
 msgid "RSS settings"
@@ -67,7 +67,7 @@ msgstr "Color"
 
 #: ../qml/SettingsRSS.qml:131
 msgid "Color of feed (ex: #B1B1B1 OR grey)"
-msgstr "Color del alimentador (ex: #B1B1B1 OR gris)"
+msgstr "Color de la fuente (ex: #B1B1B1 OR gris)"
 
 #: ../qml/SettingsRSS.qml:143
 msgid "Item"
@@ -75,7 +75,7 @@ msgstr "Artículo"
 
 #: ../qml/SettingsRSS.qml:185
 msgid "Container for one article inside the feed"
-msgstr "Contenedor para un artículo dentro del alimentador."
+msgstr "Contenedor para un artículo dentro de la fuente."
 
 #: ../qml/SettingsRSS.qml:197
 msgid "Link"
@@ -83,7 +83,7 @@ msgstr "Enlace"
 
 #: ../qml/SettingsRSS.qml:197
 msgid "Url of the article"
-msgstr "LUR del artículo"
+msgstr "Dirección del artículo"
 
 #: ../qml/SettingsRSS.qml:198
 msgid "Author"
@@ -119,7 +119,7 @@ msgstr "Descripción del artículo."
 
 #: ../qml/SettingsRSS.qml:202
 msgid "Media"
-msgstr "multimedia"
+msgstr "Multimedia"
 
 #: ../qml/SettingsRSS.qml:202
 msgid "Image for article"
