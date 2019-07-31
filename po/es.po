@@ -67,7 +67,7 @@ msgstr "Color"
 
 #: ../qml/SettingsRSS.qml:131
 msgid "Color of feed (ex: #B1B1B1 OR grey)"
-msgstr "Color de la fuente (ex: #B1B1B1 OR gris)"
+msgstr "Color de la fuente (ej: #B1B1B1 O gris)"
 
 #: ../qml/SettingsRSS.qml:143
 msgid "Item"
