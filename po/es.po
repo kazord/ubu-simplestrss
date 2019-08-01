@@ -59,7 +59,7 @@ msgstr "Vista previa de la fuente"
 
 #: ../qml/SettingsRSS.qml:46
 msgid "RSS settings"
-msgstr "Ajustes de RSS"
+msgstr "Ajustes RSS"
 
 #: ../qml/SettingsRSS.qml:101
 msgid "Color"
@@ -75,7 +75,7 @@ msgstr "Artículo"
 
 #: ../qml/SettingsRSS.qml:185
 msgid "Container for one article inside the feed"
-msgstr "Contenedor para un artículo dentro de la fuente."
+msgstr "Contenedor para un artículo dentro de la fuente"
 
 #: ../qml/SettingsRSS.qml:197
 msgid "Link"
@@ -115,7 +115,7 @@ msgstr "Descripción"
 
 #: ../qml/SettingsRSS.qml:201
 msgid "Description of the article"
-msgstr "Descripción del artículo."
+msgstr "Descripción del artículo"
 
 #: ../qml/SettingsRSS.qml:202
 msgid "Media"
@@ -123,7 +123,7 @@ msgstr "Multimedia"
 
 #: ../qml/SettingsRSS.qml:202
 msgid "Image for article"
-msgstr "Imagen para articulo"
+msgstr "Imagen para el artículo"
 
 #: ../qml/SettingsRSS.qml:203
 msgid "Date"
@@ -135,7 +135,7 @@ msgstr "No olvidar de elegir el formato de fecha correcto. Se necesita ordenar"
 
 #: ../qml/SettingsRSS.qml:286
 msgid "Format date"
-msgstr "Fecha de formato"
+msgstr "Formato de fecha"
 
 #: ../qml/SettingsRSS.qml:352
 msgid "Date format to parse"
