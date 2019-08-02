@@ -121,7 +121,8 @@ Page {
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
-                        
+                    color: if(Theme.name != "Ubuntu.Components.Themes.Ambiance"){"white"}else{"black"}
+                    
                     TextField {
                         id: textFieldColor
                         width: units.gu(20)
@@ -163,7 +164,8 @@ Page {
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
-                        
+                    color: if(Theme.name != "Ubuntu.Components.Themes.Ambiance"){"white"}else{"black"}
+
                     ComboBox {
                         id:comboboxitem
                         model: settingsRSS.possibleNode
@@ -238,7 +240,7 @@ Page {
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     anchors.verticalCenter: parent.verticalCenter
-   
+                    color: if(Theme.name != "Ubuntu.Components.Themes.Ambiance"){"white"}else{"black"}
     
                     ComboBox {
 			id:comboboxtitle
@@ -306,7 +308,7 @@ Page {
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
-                        
+                    color: if(Theme.name != "Ubuntu.Components.Themes.Ambiance"){"white"}else{"black"}
                         
                     ComboBox {
 			id: comboboxdateformat
@@ -383,6 +385,7 @@ Page {
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
+                    color: if(Theme.name != "Ubuntu.Components.Themes.Ambiance"){"white"}else{"black"}
      			Switch {
 			anchors.left: parent.right
                         anchors.leftMargin: units.gu(2)
@@ -423,6 +426,7 @@ Page {
                     anchors.left: parent.left
                     anchors.leftMargin: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
+                    color: if(Theme.name != "Ubuntu.Components.Themes.Ambiance"){"white"}else{"black"}
                         
      			Switch {
 			anchors.left: parent.right

@@ -62,7 +62,7 @@ Page {
                 wrapMode:Text.WordWrap
 		horizontalAlignment:Text.AlignJustify
                 text: viewDetailNews.descNews
-                color: "black"
+                color: if(Theme.name != "Ubuntu.Components.Themes.Ambiance"){"white"}else{"black"}
             }   
             
         }//column
