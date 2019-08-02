@@ -14,7 +14,7 @@ MainView {
     applicationName: 'simplestrss.kazord'
     automaticOrientation: true
 
-    width: if(Screen.desktopAvailableWidth > units.gu(60)){units.gu(125)}else{Screen.desktopAvailableWidth+2}
+    width: if(Screen.desktopAvailableWidth > units.gu(125)){units.gu(125)}else{Screen.desktopAvailableWidth+2}
     height:if(Screen.desktopAvailableHeight > units.gu(100)){units.gu(70)}else{Screen.desktopAvailableHeight}
 
 
