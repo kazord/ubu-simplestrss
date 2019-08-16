@@ -129,8 +129,12 @@ QString Web::wget(QUrl url) {
 
 QString Web::wget(const QUrl url, QXmlStreamReader &reader) {
 	QString text = wget(url);
-	if(text != "")
+	if(text != "") {
+		while(text.startsWith("\n"))
+			text.remove(0,1);
 		reader.addData(text);
+
+	}
 	return text;
 }
 /*QString Web::autoFetchFullArticle(const QUrl url, const QString desc) {
