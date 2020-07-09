@@ -1,0 +1,159 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the simplestrss.kazord package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: simplestrss.kazord\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-08 19:00+0000\n"
+"PO-Revision-Date: 2020-07-09 14:56+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3.1\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+
+#: ../qml/ManageRSS.qml:17
+msgid "RSS management"
+msgstr "RSS-beheer"
+
+#: ../qml/ManageRSS.qml:34 ../qml/PreviewRSS.qml:31
+msgid "Add RSS"
+msgstr "Feed toevoegen"
+
+#: ../qml/ManageRSS.qml:47
+msgid "Search"
+msgstr "Zoeken"
+
+#: ../qml/ManageRSS.qml:52
+msgid "Close"
+msgstr "Sluiten"
+
+#: ../qml/ManageRSS.qml:71
+msgid "Enter URL of feed"
+msgstr "Voer de feed-url in"
+
+#: ../qml/Main.qml:45 ../qml/build/tmp/Main.qml:20 simplestrss.desktop.in.h:1
+msgid "SimplestRSS"
+msgstr "SimplestRSS"
+
+#: ../qml/ViewDetailRSSWebview.qml:11
+msgid "View site"
+msgstr "Website bezoeken"
+
+#: ../qml/ViewDetailRSS.qml:12
+msgid "Detail article"
+msgstr "Volledige artikel"
+
+#: ../qml/ViewDetailRSS.qml:18
+msgid "Attempt to recover content"
+msgstr "Poging om inhoud te herstellen"
+
+#: ../qml/PreviewRSS.qml:15
+msgid "Feed preview"
+msgstr "Voorvertoning"
+
+#: ../qml/SettingsRSS.qml:46
+msgid "RSS settings"
+msgstr "Feedinstellingen"
+
+#: ../qml/SettingsRSS.qml:101
+msgid "Color"
+msgstr "Kleur"
+
+#: ../qml/SettingsRSS.qml:131
+msgid "Color of feed (ex: #B1B1B1 OR grey)"
+msgstr "De kleur van de feed (bijv. #B1B1B1 OF grey)"
+
+#: ../qml/SettingsRSS.qml:143
+msgid "Item"
+msgstr "Item"
+
+#: ../qml/SettingsRSS.qml:185
+msgid "Container for one article inside the feed"
+msgstr "Container van één artikel binnen de feed"
+
+#: ../qml/SettingsRSS.qml:197
+msgid "Link"
+msgstr "Link"
+
+#: ../qml/SettingsRSS.qml:197
+msgid "Url of the article"
+msgstr "De artikel-url"
+
+#: ../qml/SettingsRSS.qml:198
+msgid "Author"
+msgstr "Auteur"
+
+#: ../qml/SettingsRSS.qml:198
+msgid "Should contains the source/writer"
+msgstr "Moet de bron of schrijver bevatten"
+
+#: ../qml/SettingsRSS.qml:199
+msgid "Category"
+msgstr "Categorie"
+
+#: ../qml/SettingsRSS.qml:199
+msgid "For filtering"
+msgstr "Voor filteren"
+
+#: ../qml/SettingsRSS.qml:200
+msgid "Title"
+msgstr "Titel"
+
+#: ../qml/SettingsRSS.qml:200
+msgid "Title of article"
+msgstr "De naam van een artikel"
+
+#: ../qml/SettingsRSS.qml:201
+msgid "Description"
+msgstr "Omschrijving"
+
+#: ../qml/SettingsRSS.qml:201
+msgid "Description of the article"
+msgstr "De artikelomschrijving"
+
+#: ../qml/SettingsRSS.qml:202
+msgid "Media"
+msgstr "Media"
+
+#: ../qml/SettingsRSS.qml:202
+msgid "Image for article"
+msgstr "De bijbehorende afbeelding"
+
+#: ../qml/SettingsRSS.qml:203
+msgid "Date"
+msgstr "Datum"
+
+#: ../qml/SettingsRSS.qml:203
+msgid "Don't forget to select the right date format, it's needed ordering"
+msgstr "Vergeet niet om de juiste datumopmaak in te stellen voor ordening"
+
+#: ../qml/SettingsRSS.qml:286
+msgid "Format date"
+msgstr "Datumopmaak"
+
+#: ../qml/SettingsRSS.qml:352
+msgid "Date format to parse"
+msgstr "De te verwerken datumopmaak"
+
+#: ../qml/SettingsRSS.qml:363
+msgid "Content: cleanup HTML"
+msgstr "Inhoud: html opschonen"
+
+#: ../qml/SettingsRSS.qml:392
+msgid "Remove all HTML elements"
+msgstr "Verwijder alle html-elementen"
+
+#: ../qml/SettingsRSS.qml:403
+msgid "Content: decode special charachers"
+msgstr "Inhoud: alle speciale tekens decoderen"
+
+#: ../qml/SettingsRSS.qml:434
+msgid "Convert &xxx; into readable characters"
+msgstr "Zet &xxx; om in leesbare tekens"
