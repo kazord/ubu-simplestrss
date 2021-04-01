@@ -1,0 +1,158 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the simplestrss.kazord package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: simplestrss.kazord\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-08 19:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: NORWEGIAN <LL@li.org>\n"
+"Language: nb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../qml/ManageRSS.qml:17
+msgid "RSS management"
+msgstr "RSS administrasjon"
+
+#: ../qml/ManageRSS.qml:34 ../qml/PreviewRSS.qml:31
+msgid "Add RSS"
+msgstr "Legg til RSS"
+
+#: ../qml/ManageRSS.qml:47
+msgid "Search"
+msgstr "Søk"
+
+#: ../qml/ManageRSS.qml:52
+msgid "Close"
+msgstr "Lukk"
+
+#: ../qml/ManageRSS.qml:71
+msgid "Enter URL of feed"
+msgstr "Tast inn URL til feed"
+
+#: ../qml/Main.qml:45 ../qml/build/tmp/Main.qml:20 simplestrss.desktop.in.h:1
+msgid "SimplestRSS"
+msgstr "SimplestRSS"
+
+#: ../qml/ViewDetailRSSWebview.qml:11
+msgid "View site"
+msgstr "Vis nettsted"
+
+#: ../qml/ViewDetailRSS.qml:12
+msgid "Detail article"
+msgstr "Detaljartikkel"
+
+#: ../qml/ViewDetailRSS.qml:18
+msgid "Attempt to recover content"
+msgstr "Forsøk på å gjenopprette innhold"
+
+#: ../qml/PreviewRSS.qml:15
+msgid "Feed preview"
+msgstr "Feed forhåndsvisning"
+
+#: ../qml/SettingsRSS.qml:46
+msgid "RSS settings"
+msgstr "RSS innstillinger"
+
+#: ../qml/SettingsRSS.qml:101
+msgid "Color"
+msgstr "Farge"
+
+#: ../qml/SettingsRSS.qml:131
+msgid "Color of feed (ex: #B1B1B1 OR grey)"
+msgstr "Feedfarge (f.eks: #B1B1B1 ELLER grå)"
+
+#: ../qml/SettingsRSS.qml:143
+msgid "Item"
+msgstr "Element"
+
+#: ../qml/SettingsRSS.qml:185
+msgid "Container for one article inside the feed"
+msgstr ""
+
+#: ../qml/SettingsRSS.qml:197
+msgid "Link"
+msgstr "Lenke"
+
+#: ../qml/SettingsRSS.qml:197
+msgid "Url of the article"
+msgstr "Artikkellenke"
+
+#: ../qml/SettingsRSS.qml:198
+msgid "Author"
+msgstr "Forfatter"
+
+#: ../qml/SettingsRSS.qml:198
+msgid "Should contains the source/writer"
+msgstr "Bør inneholde kilde/forfatter"
+
+#: ../qml/SettingsRSS.qml:199
+msgid "Category"
+msgstr "Kategori"
+
+#: ../qml/SettingsRSS.qml:199
+msgid "For filtering"
+msgstr "For filtrering"
+
+#: ../qml/SettingsRSS.qml:200
+msgid "Title"
+msgstr "Tittel"
+
+#: ../qml/SettingsRSS.qml:200
+msgid "Title of article"
+msgstr "Artikkeltittel"
+
+#: ../qml/SettingsRSS.qml:201
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: ../qml/SettingsRSS.qml:201
+msgid "Description of the article"
+msgstr "Artikkelbeskrivelse"
+
+#: ../qml/SettingsRSS.qml:202
+msgid "Media"
+msgstr "Media"
+
+#: ../qml/SettingsRSS.qml:202
+msgid "Image for article"
+msgstr "Artikkelbilde"
+
+#: ../qml/SettingsRSS.qml:203
+msgid "Date"
+msgstr "Dato"
+
+#: ../qml/SettingsRSS.qml:203
+msgid "Don't forget to select the right date format, it's needed ordering"
+msgstr "Ikke glem å velge riktig datoformat, det er nødvendig ved bestilling"
+
+#: ../qml/SettingsRSS.qml:286
+msgid "Format date"
+msgstr "Formater dato"
+
+#: ../qml/SettingsRSS.qml:352
+msgid "Date format to parse"
+msgstr "Datoformat for behandling"
+
+#: ../qml/SettingsRSS.qml:363
+msgid "Content: cleanup HTML"
+msgstr "Innhold: Opprydding av HTML"
+
+#: ../qml/SettingsRSS.qml:392
+msgid "Remove all HTML elements"
+msgstr "Fjern alle HTML elementer"
+
+#: ../qml/SettingsRSS.qml:403
+msgid "Content: decode special charachers"
+msgstr "Innhold: Dekode spesialtegn"
+
+#: ../qml/SettingsRSS.qml:434
+msgid "Convert &xxx; into readable characters"
+msgstr "Konverter &xxx; til lesbare tegn"
